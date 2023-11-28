@@ -1,17 +1,16 @@
 import React from "react";
 
 const Footer = () => {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="p-10 bg-neutral text-neutral-content">
       <div className="footer container mx-auto px-4">
         <nav>
-          <header className="footer-title text-2xl text-secondary">
-            Dw-shop
+          <header className="footer-title text-2xl text-primary">
+            Arnaud Carrascosa
           </header>
-          <p className="text-lg text-center font-bold">2013 - {year}</p>
+          <p className="text-lg text-center font-bold">2023</p>
         </nav>
+        {/*
         <nav>
           <header className="footer-title">Services</header>
           <a className="link link-hover">Branding</a>
@@ -31,7 +30,7 @@ const Footer = () => {
           <a className="link link-hover">Terms of use</a>
           <a className="link link-hover">Privacy policy</a>
           <a className="link link-hover">Cookie policy</a>
-        </nav>
+  </nav>*/}
       </div>
     </footer>
   );
