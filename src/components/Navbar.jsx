@@ -6,7 +6,7 @@ const Navbar = () => {
     <header className="navbar bg-base-100 shadow shadow-neutral py-2 fixed top-0 w-full">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <a
-          href=""
+          href="#"
           className="text-secondary text-2xl transition duration-700 hover:text-primary font-semibold"
         >
           Arnaud.C
