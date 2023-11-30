@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
 
+/*770px de largeur = hamburger*/
 body {
   overflow: hidden;
 }
@@ -7,6 +8,7 @@ body {
 h1 {
   text-shadow: 1px 1px 4px black;
   font-family: "Poppins", sans-serif;
+  font-size: 30px;
 }
 
 .mainItems {
@@ -15,15 +17,15 @@ h1 {
   height: 100vh;
 }
 
-.about,
-.formations,
-.experiences,
-.hobbies,
-.contact {
+#about,
+#formations,
+#experiences,
+#hobbies,
+#contact {
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: top;
   scroll-snap-align: start;
 }
 

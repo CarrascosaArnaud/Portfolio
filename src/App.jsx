@@ -8,19 +8,19 @@ function App() {
     <main>
       <Navbar />
       <div className="mainItems">
-        <section id="about" className="pt-20 bg-white about">
+        <section id="about" className="pt-20">
           <h1>A propos de moi</h1>
         </section>
-        <section id="formations" className="pt-20 bg-red formations">
+        <section id="formations" className="pt-20 bg-info">
           <h1>Formations</h1>
         </section>
-        <section id="experiences" className="pt-20 bg-white experiences">
+        <section id="experiences" className="pt-20">
           <h1>Expériences professionnelles</h1>
         </section>
-        <section id="hobbies" className="pt-20 bg-red hobbies">
+        <section id="hobbies" className="pt-20 bg-info">
           <h1>Hobbies</h1>
         </section>
-        <section id="contact" className="pt-20 bg-white contact">
+        <section id="contact" className="pt-20">
           <h1>Contactez moi</h1>
         </section>
       </div>
