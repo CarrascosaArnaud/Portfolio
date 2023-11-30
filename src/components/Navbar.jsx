@@ -3,7 +3,7 @@ import liens from "../liens";
 
 const Navbar = () => {
   return (
-    <header className="navbar bg-base-100 shadow shadow-neutral py-2 sticky top-0">
+    <header className="navbar bg-base-100 shadow shadow-neutral py-2 fixed top-0 w-full">
       <div className="container mx-auto px-4 flex justify-between items-center">
         <a
           href=""
