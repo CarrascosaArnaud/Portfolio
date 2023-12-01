@@ -25,7 +25,7 @@ const DesktopNavbar = () => {
           })}
           <a
             href="#contact"
-            className="btn btn-ghost transition duration-500 hover:text-primary text-xl"
+            className="btn btn-ghost transition duration-500 hover:text-primary text-xl animate-pulse"
           >
             Contactez moi
           </a>
