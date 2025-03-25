@@ -3,6 +3,9 @@
 npm create vite@latest  
 npm i  
 npm i tailwindcss postcss autoprefixer  
+npm i react-intersection-observer
+npm i framer-motion
+npm i swiper
 npx tailwindcss init  
 npm i -D daisyui@latest  
 npm run dev
