@@ -26,7 +26,7 @@ const DesktopNavbar = () => {
       <header className="fixed top-0 w-full bg-base-100 shadow-md py-2 z-50">
         <div className="container mx-auto px-4 flex justify-between items-center">
           <a href="#about" className="text-secondary text-2xl font-semibold">
-            Arnaud.C
+            Arnaud Carrascosa
           </a>
           <ul className="flex items-center gap-10">
             {liens.map((link) => (
