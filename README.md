@@ -6,7 +6,7 @@ npm i tailwindcss postcss autoprefixer
 npm i react-intersection-observer
 npm i framer-motion
 npm i swiper
-npm i react-tsparticles tsparticles
+npm i tsparticles@2.12.0 react-tsparticles@2.12.0
 npx tailwindcss init  
 npm i -D daisyui@latest  
 npm run dev
