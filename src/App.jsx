@@ -2,7 +2,7 @@ import "./App.css";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Experiences from "./components/Experiences";
-import Formations from "./components/Formations";
+import Formations from "./components/Formations.jsx";
 import Hobbies from "./components/Hobbies";
 import Navbar from "./components/Navbar";
 
@@ -13,7 +13,6 @@ function App() {
       <div className="mainItems">
         <About />
         <Formations />
-        <Experiences />
         <Hobbies />
         <Contact />
       </div>

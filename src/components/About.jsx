@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import linkedinIcon from "../assets/linkedin-icon.png.webp";
+import AboutBackground from "./backgrounds/AboutBackground.jsx";
+
 
 export default function About() {
     const [typedText, setTypedText] = useState("");
@@ -27,8 +29,9 @@ export default function About() {
     return (
         <section
             id="about"
-            className="h-screen flex flex-col justify-center items-center bg-black text-white px-6"
+            className="h-screen flex flex-col justify-center items-center text-white px-6 relative overflow-hidden"
         >
+            <AboutBackground />
             <motion.h1
                 className="text-5xl md:text-7xl font-bold text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -78,6 +81,18 @@ export default function About() {
                     </motion.a>
                 </motion.div>
             </div>
+            <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="mt-4 mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border-2 border-green-500 text-green-400 text-sm font-medium bg-neutral-900/50"
+            >
+                <span className="relative flex h-3 w-3">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+    </span>
+                Statut : Ouvert à toute proposition
+            </motion.div>
         </section>
     );
 }

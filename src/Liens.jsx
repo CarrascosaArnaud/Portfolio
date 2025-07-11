@@ -6,16 +6,11 @@ const Liens = [
   },
   {
     id: 2,
-    text: "Formations",
+    text: "Parcours",
     url: "#formations",
   },
   {
     id: 3,
-    text: "Expérience Pro.",
-    url: "#experiences",
-  },
-  {
-    id: 4,
     text: "Hobbies",
     url: "#hobbies",
   },
