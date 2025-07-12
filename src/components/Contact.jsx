@@ -32,21 +32,21 @@ const Contact = () => {
 
             <form
                 onSubmit={handleSubmit}
-                className="bg-gray-900 p-8 rounded-xl shadow-lg w-full max-w-md space-y-4"
+                className="p-8 rounded-xl shadow-2xl w-full max-w-md space-y-4"
             >
                 <input
                     type="email"
                     name="email"
                     required
                     placeholder="Votre email"
-                    className="w-full p-2 rounded bg-gray-800 text-white border border-gray-600"
+                    className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
                 />
                 <textarea
                     name="message"
                     required
                     placeholder="Votre message"
                     rows="5"
-                    className="w-full p-2 rounded bg-gray-800 text-white border border-gray-600"
+                    className="w-full p-2 rounded bg-gray-700 text-white border border-gray-600"
                 ></textarea>
 
                 <button

@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import linkedinIcon from "../assets/linkedin-icon.png.webp";
-import AboutBackground from "./backgrounds/AboutBackground.jsx";
+import githubIcon from "../assets/github-logo.png";
+import mailIcon from "../assets/mail-logo.png";
 
 
 export default function About() {
@@ -31,7 +32,6 @@ export default function About() {
             id="about"
             className="h-screen flex flex-col justify-center items-center text-white px-6 relative overflow-hidden"
         >
-            <AboutBackground />
             <motion.h1
                 className="text-5xl md:text-7xl font-bold text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -72,12 +72,31 @@ export default function About() {
                     </motion.a>
 
                     <motion.a
-                        href="#contact"
-                        className="text-2xl px-6 py-2 border-2 border-gray-400 rounded-lg text-gray-400 hover:bg-gray-400 hover:text-black transition"
+                        href="https://github.com/CarrascosaArnaud"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mr-5 w-10 h-10"
                         whileHover={{ scale: 1.2 }}
                         transition={{ duration: 0.3 }}
                     >
-                        Me Contacter
+                        <img
+                            src={githubIcon}
+                            alt="Github"
+                            className="w-10 h-10 grayscale"
+                        />
+                    </motion.a>
+
+                    <motion.a
+                        href="#contact"
+                        className="w-10 h-10 grayscale"
+                        whileHover={{ scale: 1.2 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <img
+                            src={mailIcon}
+                            alt="Mails"
+                            className="w-10 h-10 grayscale"
+                        />
                     </motion.a>
                 </motion.div>
             </div>
@@ -85,14 +104,19 @@ export default function About() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="mt-4 mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border-2 border-green-500 text-green-400 text-sm font-medium bg-neutral-900/50"
+                className="group relative mt-4 mb-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full border-2 border-green-500 text-green-400 text-sm font-medium bg-neutral-900/50"
             >
-                <span className="relative flex h-3 w-3">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-    </span>
-                Statut : Ouvert à toute proposition
+            <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+            </span>
+                Statut : Disponible
+
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-max px-4 py-2 rounded-md bg-gray-600 text-white text-xs shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10 pointer-events-none">
+                    Ouvert à toute proposition (CDD,CDI, mission freelance, alternance, collaboration...)
+                </div>
             </motion.div>
+
         </section>
     );
 }

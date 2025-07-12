@@ -25,7 +25,7 @@ const DesktopNavbar = () => {
   return (
       <header className="fixed top-0 w-full bg-base-100 shadow-md py-2 z-50">
         <div className="container mx-auto px-4 flex justify-between items-center">
-          <a href="#about" className="text-secondary text-2xl font-semibold">
+          <a href="#about"  className="text-secondary text-2xl font-semibold transition-all duration-300 hover:text-white">
             Arnaud Carrascosa
           </a>
           <ul className="flex items-center gap-10">
@@ -41,7 +41,7 @@ const DesktopNavbar = () => {
                 </li>
             ))}
             <li>
-              <a href="#contact" className="btn btn-ghost text-xl animate-pulse">
+              <a href="#contact" className="btn btn-ghost text-xl animate-puls">
                 Contactez moi
               </a>
             </li>
