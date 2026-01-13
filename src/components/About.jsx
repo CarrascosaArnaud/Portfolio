@@ -4,7 +4,6 @@ import linkedinIcon from "../assets/linkedin-icon.png.webp";
 import githubIcon from "../assets/github-logo.png";
 import mailIcon from "../assets/mail-logo.png";
 
-
 export default function About() {
     const [typedText, setTypedText] = useState("");
     const [showContact, setShowContact] = useState(false);
@@ -30,7 +29,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="h-screen flex flex-col justify-center items-center text-white px-6 relative overflow-hidden"
+            className="h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden bg-[#ededed] dark:bg-[#292929] text-gray-900 dark:text-white transition-colors duration-500"
         >
             <motion.h1
                 className="text-5xl md:text-7xl font-bold text-center"
@@ -39,13 +38,12 @@ export default function About() {
                 transition={{ duration: 1, delay: 0.25 }}
             >
                 Salut, moi c'est{" "}
-                <span className="text-gray-300 hover:text-white animate-pulse">
+                <span className="text-blue-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-white animate-pulse transition-colors duration-300">
                     Arnaud
                 </span>
             </motion.h1>
 
-
-            <p className="mt-4 text-lg text-gray-400 text-center max-w-2xl min-h-[24px]">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 text-center max-w-2xl min-h-[24px] font-medium">
                 {typedText}
             </p>
 
@@ -67,7 +65,8 @@ export default function About() {
                         <img
                             src={linkedinIcon}
                             alt="LinkedIn"
-                            className="w-10 h-10 grayscale"
+                            // MODIFICATION : Inversion légère sur les icônes si besoin en mode clair
+                            className="w-10 h-10 grayscale hover:grayscale-0 transition-all duration-300"
                         />
                     </motion.a>
 
@@ -82,7 +81,7 @@ export default function About() {
                         <img
                             src={githubIcon}
                             alt="Github"
-                            className="w-10 h-10 grayscale"
+                            className="w-10 h-10 grayscale hover:grayscale-0 dark:invert transition-all duration-300"
                         />
                     </motion.a>
 
@@ -95,13 +94,11 @@ export default function About() {
                         <img
                             src={mailIcon}
                             alt="Mail"
-                            className="w-10 h-10 grayscale"
+                            className="w-10 h-10 grayscale hover:grayscale-0 dark:invert transition-all duration-300"
                         />
                     </motion.a>
                 </motion.div>
-
             </div>
-
         </section>
     );
 }

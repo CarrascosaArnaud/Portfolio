@@ -44,14 +44,14 @@ const Formations = () => {
     }, [formationsData, activeTab]);
 
     return (
-        <section id="formations" className="h-screen w-full flex flex-col items-center pt-3 md:pt-24 pb-4 relative overflow-hidden">
+        <section id="formations" className="h-screen w-full flex flex-col items-center pt-3 md:pt-24 pb-4 relative overflow-hidden bg-[#ededed] dark:bg-[#292929] transition-colors duration-500">
 
             <div className="flex-none flex flex-col items-center w-full z-10 bg-inherit pb-4">
-                <h1 className="text-2xl font-bold mb-6 text-white">Parcours</h1>
+                <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Parcours</h1>
                 <div className="flex justify-center gap-6">
                     <button
                         className={`px-4 py-2 rounded-full transition text-sm font-medium ${
-                            activeTab === "formations" ? "bg-gray-200 text-black" : "bg-gray-700 text-gray-300"
+                            activeTab === "formations" ? "bg-gray-400 text-gray-900" : "bg-gray-700 text-gray-300"
                         }`}
                         onClick={() => setActiveTab("formations")}
                     >
@@ -59,7 +59,7 @@ const Formations = () => {
                     </button>
                     <button
                         className={`px-4 py-2 rounded-full transition text-sm font-medium ${
-                            activeTab === "experiences" ? "bg-gray-950 text-white" : "bg-gray-700 text-gray-300"
+                            activeTab === "experiences" ? "bg-gray-800 text-white" : "bg-gray-700 text-gray-300"
                         }`}
                         onClick={() => setActiveTab("experiences")}
                     >
@@ -95,7 +95,7 @@ const Formations = () => {
                 </div>
             </div>
 
-            {/*Modales*/}
+
             {selectedFormation && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4"

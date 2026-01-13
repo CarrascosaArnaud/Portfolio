@@ -27,12 +27,12 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="flex flex-col items-center justify-center h-screen px-4">
-            <h1 className="text-2xl font-bold mb-6 text-white">Me Contacter</h1>
+        <section id="contact" className="flex flex-col items-center justify-center h-screen px-4 bg-[#ededed] dark:bg-[#292929] transition-colors duration-500">
+            <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Me Contacter</h1>
 
             <form
                 onSubmit={handleSubmit}
-                className="p-8 rounded-xl shadow-2xl w-full max-w-md space-y-4"
+                className="p-8 rounded-xl shadow-2xl w-full max-w-md space-y-4 bg-gray-100 dark:bg-gray-800"
             >
                 <input
                     type="email"
@@ -60,7 +60,7 @@ const Contact = () => {
                     <p className="text-green-400">Message envoyé avec succès !</p>
                 )}
                 {status === "error" && (
-                    <p className="text-red-400">Une erreur est survenue, vous pouvez m'envoyer votre mail directement ici : carrascosarnaud@gmail.com.</p>
+                    <p className="text-red-400">Votre mail ne s'est pas envoyé, n'hésitez pas à me contacter directement à cette adresse : carrascosarnaud@gmail.com.</p>
                 )}
             </form>
         </section>

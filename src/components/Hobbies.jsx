@@ -2,9 +2,9 @@ import React from "react";
 
 const Hobbies = () => {
   return (
-    <section id="hobbies" className="pt-20">
+    <section id="hobbies" className="pt-20 bg-[#ededed] dark:bg-[#292929] transition-colors duration-500">
       <div className="flex-col">
-        <h1 className="flex justify-center">Hobbies</h1>
+        <h1 className="flex justify-center text-gray-900 dark:text-gray-300">Hobbies</h1>
           <div className="bg-gray-800 text-white p-6 rounded-lg shadow-lg w-[90%] max-w-md text-center">
               <p className="mb-4">Mes projets de jeux vidéos</p>
               <a
