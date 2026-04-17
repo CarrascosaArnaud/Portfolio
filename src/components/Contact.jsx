@@ -29,7 +29,7 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="flex flex-col items-center justify-center h-screen px-4 bg-gradient-to-t from-[#e2e8f0] to-[#ccfbf1] dark:from-[#020617] dark:to-[#042f2e] transition-colors duration-500"
+            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center justify-center h-screen px-4 bg-gradient-to-t from-[#e2e8f0] to-[#ccfbf1] dark:from-[#020617] dark:to-[#042f2e] transition-colors duration-500"
         >   <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Me Contacter</h1>
             <form
                 onSubmit={handleSubmit}

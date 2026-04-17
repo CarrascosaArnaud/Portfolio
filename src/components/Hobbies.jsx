@@ -128,9 +128,6 @@ const HobbyCard = ({ hobby }) => {
                                     Lien vers mon Itch.io
                                 </a>
                             )}
-                            <button className="text-gray-400 hover:text-white transition-colors text-sm underline">
-                                Fermer les détails
-                            </button>
                         </div>
                     </motion.div>
                 )}
@@ -197,7 +194,9 @@ const Hobbies = () => {
 
                     {loopData.map((hobby, index) => (
                         <SwiperSlide key={hobby.id} className="py-10">
+                            <p className="text-sm md:text-base leading-relaxed">
                             <HobbyCard hobby={hobby} />
+                            </p>
                         </SwiperSlide>
                     ))}
                 </Swiper>
