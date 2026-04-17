@@ -11,12 +11,13 @@ const DesktopNavbar = () => {
         const sections = document.querySelectorAll("section");
         const observer = new IntersectionObserver(
             (entries) => {
-                const visibleSection = entries.find((entry) => entry.isIntersecting);
-                if (visibleSection) {
-                    setActiveSection(visibleSection.target.id);
-                }
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(entry.target.id);
+                    }
+                });
             },
-            { rootMargin: "-50% 0px -50% 0px" }
+            { rootMargin: "-20% 0px -20% 0px", threshold: 0.2 }
         );
         sections.forEach((section) => observer.observe(section));
         return () => observer.disconnect();
@@ -44,7 +45,7 @@ const DesktopNavbar = () => {
     };
 
     return (
-        <header className="fixed top-0 w-full bg-[#ededed] dark:bg-[#292929] shadow-md py-2 z-50 transition-colors duration-300">
+        <header className="fixed top-0 w-full bg-white/70 dark:bg-black/60 backdrop-blur-md shadow-sm py-2 z-50 transition-colors duration-300">
             <div className="container mx-auto flex justify-between items-center px-4">
                 <a
                     href="#about"
@@ -59,8 +60,8 @@ const DesktopNavbar = () => {
                             <li key={link.id}>
                                 <a
                                     href={link.url}
-                                    className={`relative text-gray-700 dark:text-gray-400 text-lg transition duration-300 hover:text-black dark:hover:text-white 
-                  ${activeSection === link.url.substring(1) ? "active-link !text-black dark:!text-white font-bold" : ""}`}
+                                    className={`relative whitespace-nowrap text-gray-700 dark:text-gray-400 text-lg transition duration-300 hover:text-black dark:hover:text-white 
+                    ${activeSection === link.url.substring(1) ? "active-link !text-black dark:!text-white font-bold" : ""}`}
                                 >
                                     {link.text}
                                 </a>
@@ -68,13 +69,20 @@ const DesktopNavbar = () => {
                         ))}
                     </ul>
 
-                    <a href="#contact" className="text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white btn btn-ghost text-xl">
+                    <a
+                        href="#contact"
+                        className={`whitespace-nowrap btn btn-ghost text-xl transition-all duration-300 
+                        ${activeSection === "contact"
+                            ? "text-black dark:text-white font-bold"
+                            : "text-gray-700 dark:text-gray-400 hover:text-black dark:hover:text-white"
+                        }`}
+                    >
                         Contactez moi
                     </a>
 
                     <button
                         onClick={toggleTheme}
-                        className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-all duration-300 bg-gray-300 dark:bg-gray-700"
+                        className="w-10 h-10 flex-shrink-0 aspect-square flex items-center justify-center rounded-full hover:bg-gray-300 dark:hover:bg-gray-700 transition-all duration-300 bg-gray-300 dark:bg-gray-700"
                     >
                         <img
                             src={theme === "dark" ? sunIcon : moonIcon}

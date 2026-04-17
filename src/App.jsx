@@ -1,10 +1,11 @@
 import "./App.css";
+import { useEffect } from "react";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Formations from "./components/Formations.jsx";
 import Hobbies from "./components/Hobbies";
 import Navbar from "./components/Navbar";
-import {useEffect} from "react";
+import FadeIn from "./components/FadeIn"; // N'oublie pas d'importer ton nouveau composant !
 
 function App() {
     useEffect(() => {
@@ -19,17 +20,20 @@ function App() {
             document.documentElement.classList.remove("dark");
         }
     }, []);
-  return (
-    <main>
-      <Navbar />
-      <div className="mainItems">
-        <About />
-        <Formations />
-        <Hobbies />
-        <Contact />
-      </div>
-    </main>
-  );
+
+    const sections = [About, Formations, Hobbies, Contact];
+    return (
+        <main>
+            <Navbar />
+            <div className="mainItems">
+                {sections.map((SectionComponent) => (
+                    <FadeIn>
+                        <SectionComponent />
+                    </FadeIn>
+                ))}
+            </div>
+        </main>
+    );
 }
 
 export default App;

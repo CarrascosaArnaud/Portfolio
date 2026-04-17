@@ -67,7 +67,7 @@ const HobbyCard = ({ hobby }) => {
     };
 
     const handleMouseLeave = () => {
-        if (videoRef.current) {
+        if (videoRef.current && !isExpanded) {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
         }
@@ -94,8 +94,9 @@ const HobbyCard = ({ hobby }) => {
                     muted
                     loop
                     playsInline
+                    autoPlay
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
-                    ${isExpanded ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`}
+                    ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100 opacity-100'}`}
                 />
             )}
 
@@ -141,8 +142,10 @@ const HobbyCard = ({ hobby }) => {
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
     return (
-        <section id="hobbies" className="min-h-screen pt-24 pb-20 flex flex-col items-center bg-[#ededed] dark:bg-[#292929] transition-colors duration-500 overflow-hidden">
-            <style>{`
+        <section
+            id="hobbies"
+            className="min-h-screen pt-24 pb-20 flex flex-col items-center bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500 overflow-hidden"
+        >   <style>{`
                 .swiper-pagination-bullet {
                     background-color: #6b7280;
                     opacity: 0.5;
@@ -174,15 +177,20 @@ const Hobbies = () => {
                         clickable: true,
                         dynamicBullets: true
                     }}
-                    spaceBetween={40}
-                    slidesPerView={1.3}
+                    spaceBetween={20}
+                    slidesPerView={1.35}
                     centeredSlides={true}
                     loop={true}
-                    initialSlide={0}
                     grabCursor={true}
                     breakpoints={{
-                        768: { slidesPerView: 2.5 },
-                        1280: { slidesPerView: 3.8 },
+                        768: {
+                            slidesPerView: 2.5,
+                            spaceBetween: 40
+                        },
+                        1280: {
+                            slidesPerView: 3.8,
+                            spaceBetween: 40
+                        },
                     }}
                     className="px-10 pb-12"
                 >

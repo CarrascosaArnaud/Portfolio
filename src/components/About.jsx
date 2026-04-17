@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import linkedinIcon from "../assets/linkedin-icon.png.webp";
 import githubIcon from "../assets/github-logo.png";
 import mailIcon from "../assets/mail-logo.png";
+import itchIcon from "../assets/itch-logo.png";
 
 export default function About() {
     const [typedText, setTypedText] = useState("");
@@ -29,7 +30,7 @@ export default function About() {
     return (
         <section
             id="about"
-            className="h-screen flex flex-col justify-center items-center px-6 relative overflow-hidden bg-[#ededed] dark:bg-[#292929] text-gray-900 dark:text-white transition-colors duration-500"
+            className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-br from-[#f8fafc] via-[#eef2ff] to-[#e0e7ff] dark:from-[#0f172a] dark:via-[#1e1b4b] dark:to-[#2e1065] text-gray-900 dark:text-white transition-colors duration-500"
         >
             <motion.h1
                 className="text-5xl md:text-7xl font-bold text-center"
@@ -84,6 +85,21 @@ export default function About() {
                             className="w-10 h-10 grayscale hover:grayscale-0 dark:invert transition-all duration-300"
                         />
                     </motion.a>
+
+                    <motion.a
+                    href="https://iokko.itch.io/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
+                >
+                    <img
+                        src={itchIcon}
+                        alt="Itch.Io"
+                        className="w-10 h-10 grayscale hover:grayscale-0 dark:invert transition-all duration-300"
+                    />
+                </motion.a>
 
                     <motion.a
                         href="#contact"

@@ -44,22 +44,28 @@ const Formations = () => {
     }, [formationsData, activeTab]);
 
     return (
-        <section id="formations" className="h-screen w-full flex flex-col items-center pt-3 md:pt-24 pb-4 relative overflow-hidden bg-[#ededed] dark:bg-[#292929] transition-colors duration-500">
-
+        <section
+            id="formations"
+            className="min-h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-[#e0e7ff] dark:bg-[#2e1065] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
+        >
             <div className="flex-none flex flex-col items-center w-full z-10 bg-inherit pb-4">
                 <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Parcours</h1>
                 <div className="flex justify-center gap-6">
                     <button
-                        className={`px-4 py-2 rounded-full transition text-sm font-medium ${
-                            activeTab === "formations" ? "bg-gray-400 text-gray-900" : "bg-gray-700 text-gray-300"
+                        className={`px-6 py-2 rounded-full transition-all duration-300 text-sm font-semibold shadow-lg ${
+                            activeTab === "formations"
+                                ? "bg-blue-600 text-white shadow-blue-500/20"
+                                : "bg-white/10 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-white/20"
                         }`}
                         onClick={() => setActiveTab("formations")}
                     >
                         Formations
                     </button>
                     <button
-                        className={`px-4 py-2 rounded-full transition text-sm font-medium ${
-                            activeTab === "experiences" ? "bg-gray-800 text-white" : "bg-gray-700 text-gray-300"
+                        className={`px-6 py-2 rounded-full transition-all duration-300 text-sm font-semibold shadow-lg ${
+                            activeTab === "experiences"
+                                ? "bg-blue-600 text-white shadow-blue-500/20"
+                                : "bg-white/10 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-white/20"
                         }`}
                         onClick={() => setActiveTab("experiences")}
                     >
@@ -83,12 +89,12 @@ const Formations = () => {
                         <div key={index} className={`relative flex items-center mb-8 ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
                             <div className="timeline-point absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-300 rounded-full border-2 border-gray-500 z-10"></div>
                             <div
-                                className={`cursor-pointer bg-gray-800 bg-opacity-80 backdrop-blur-sm text-white p-3 rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 w-[45%] border border-gray-700 hover:border-gray-500
-                                ${index % 2 === 0 ? "mr-8 text-right" : "ml-8 text-left"}`}
+                                className={`cursor-pointer bg-white/40 dark:bg-white/5 backdrop-blur-md text-gray-900 dark:text-white p-4 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 w-[45%] border border-white/50 dark:border-white/10 hover:border-blue-400/50 group
+                                            ${index % 2 === 0 ? "mr-8 text-right" : "ml-8 text-left"}`}
                                 onClick={() => setSelectedFormation(formation)}
                             >
-                                <h2 className="font-bold text-lg text-blue-400">{formation.year}</h2>
-                                <p className="text-sm font-medium">{formation.title}</p>
+                                <h2 className="font-bold text-lg text-blue-600 dark:text-blue-400 group-hover:text-blue-500 transition-colors">{formation.year}</h2>
+                                <p className="text-sm font-semibold tracking-wide">{formation.title}</p>
                             </div>
                         </div>
                     ))}
