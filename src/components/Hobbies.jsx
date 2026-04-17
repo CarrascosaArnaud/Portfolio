@@ -144,7 +144,7 @@ const Hobbies = () => {
     return (
         <section
             id="hobbies"
-            className="min-h-screen pt-24 pb-20 flex flex-col items-center bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500 overflow-hidden"
+            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500 overflow-hidden"
         >   <style>{`
                 .swiper-pagination-bullet {
                     background-color: #6b7280;
