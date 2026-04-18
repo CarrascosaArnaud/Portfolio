@@ -69,7 +69,7 @@ export default function About() {
                 };
             });
             setBubbles(generatedBubbles);
-        }, 1000);
+        }, 10);
 
         const startTyping = setTimeout(() => {
             let index = 0;
