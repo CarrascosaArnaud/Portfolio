@@ -141,31 +141,33 @@ const Hobbies = () => {
     return (
         <section
             id="hobbies"
-            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500 overflow-hidden"
-        >   <style>{`
-                .swiper-pagination-bullet {
-                    background-color: #6b7280;
-                    opacity: 0.5;
-                    width: 10px;
-                    height: 10px;
-                    transition: all 0.3s ease;
-                }
-                .swiper-pagination-bullet-active {
-                    background-color: #3b82f6 !important;
-                    opacity: 1;
-                    transform: scale(1.3);
-                }
-                .dark .swiper-pagination-bullet {
-                    background-color: #9ca3af;
-                }
-                .dark .swiper-pagination-bullet-active {
-                    background-color: #ffffff !important;
-                }
-            `}</style>
+            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500"
+        >
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                {[...Array(15)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute rounded-full bg-blue-500/60 dark:bg-blue-400/30 blur-3xl"
+                        style={{
+                            width: Math.random() * 300 + 100,
+                            height: Math.random() * 300 + 100,
+                            top: `${Math.random() * 100}%`,
+                            left: `${Math.random() * 100}%`,
+                        }}
+                        animate={{
+                            y: [0, -120, 0],
+                            x: [0, 60, 0],
+                            scale: [1, 1.3, 1]
+                        }}
+                        transition={{ duration: 8 + Math.random() * 5, repeat: Infinity }}
+                    />
+                ))}
+            </div>
 
-            <h1 className="text-4xl font-bold mb-16 text-gray-900 dark:text-white tracking-widest">
-                Hobbies
-            </h1>
+            <div className="relative z-10 w-full flex flex-col items-center">
+                <h1 className="text-4xl font-bold mb-16 text-gray-900 dark:text-white tracking-widest">
+                    Hobbies
+                </h1>
 
             <div className="w-full">
                 <Swiper
@@ -200,6 +202,7 @@ const Hobbies = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
+            </div>
             </div>
         </section>
     );

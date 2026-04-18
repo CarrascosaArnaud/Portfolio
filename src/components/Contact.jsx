@@ -29,8 +29,10 @@ const Contact = () => {
     return (
         <section
             id="contact"
-            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center justify-center h-screen px-4 bg-gradient-to-t from-[#e2e8f0] to-[#ccfbf1] dark:from-[#020617] dark:to-[#042f2e] transition-colors duration-500"
-        >   <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Me Contacter</h1>
+            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center justify-center relative bg-white dark:bg-[#0f172a] bg-gradient-to-t from-[#e2e8f0] to-[#ccfbf1] dark:from-[#020617] dark:to-[#042f2e] transition-colors duration-500 overflow-hidden"
+        >
+            <div className="z-20 w-full max-w-md px-4 text-center">
+                <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">Me Contacter</h1>
             <form
                 onSubmit={handleSubmit}
                 className="p-10 rounded-2xl shadow-2xl w-full max-w-md space-y-5 bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10"
@@ -72,6 +74,19 @@ const Contact = () => {
                 )}
 
             </form>
+            </div>
+            <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none">
+                <svg className="relative block w-full h-[100px] md:h-[150px]" viewBox="0 24 150 28" preserveAspectRatio="none">
+                    <defs>
+                        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                    </defs>
+                    <g className="parallax-waves">
+                        <use href="#wave-path" x="48" y="0" className="fill-blue-400/40 dark:fill-blue-900/20" />
+                        <use href="#wave-path" x="48" y="3" className="fill-blue-500/50 dark:fill-blue-800/30" />
+                        <use href="#wave-path" x="48" y="5" className="fill-blue-600/30 dark:fill-[#020617]" />
+                    </g>
+                </svg>
+            </div>
         </section>
     );
 };

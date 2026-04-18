@@ -5,7 +5,8 @@ import Contact from "./components/Contact";
 import Formations from "./components/Formations.jsx";
 import Hobbies from "./components/Hobbies";
 import Navbar from "./components/Navbar";
-import FadeIn from "./components/FadeIn"; // N'oublie pas d'importer ton nouveau composant !
+import FadeIn from "./components/FadeIn";
+import ThemeToggle from "./components/ThemeToggle.jsx";
 
 function App() {
     useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
     const sections = [About, Formations, Hobbies, Contact];
     return (
         <main>
+            <ThemeToggle />
             <Navbar />
             <div className="mainItems">
                 {sections.map((SectionComponent) => (

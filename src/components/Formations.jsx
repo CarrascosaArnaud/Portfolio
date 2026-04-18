@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const formations = [
     { year: "2019-2021", title: "BTS SNIR", details: "Effectué à Toulouse, j'étais Major de promotion pendant les deux ans. J'ai fait ma deuxième année en alternance aux Ateliers de la Haute Garonne" },
@@ -46,9 +47,31 @@ const Formations = () => {
     return (
         <section
             id="formations"
-            className="min-h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-[#e0e7ff] dark:bg-[#2e1065] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
+            className="min-h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
         >
-            {/* Correction : bg-transparent au lieu de bg-inherit pour éviter la coupure de couleur */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                {[...Array(10)].map((_, i) => (
+                    <motion.div
+                        key={i}
+                        className="absolute border-2 border-blue-600/40 dark:border-blue-400/25"
+                        style={{
+                            width: 120 + i * 60,
+                            height: 120 + i * 60,
+                            top: `${10 * i - 5}%`,
+                            left: i % 2 === 0 ? "-10%" : "auto",
+                            right: i % 2 !== 0 ? "-10%" : "auto",
+                        }}
+                        animate={{
+                            rotate: i % 2 === 0 ? [0, 90] : [0, -90],
+                            scale: [1, 1.1, 1],
+                            opacity: [0.3, 0.5, 0.3]
+                        }}
+                        transition={{ duration: 12 + i, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                ))}
+            </div>
+
+            <div className="relative z-10 w-full flex flex-col items-center">
             <div className="flex-none flex flex-col items-center w-full z-10 bg-transparent pb-8">
                 <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Parcours</h1>
                 <div className="flex justify-center gap-6">
@@ -118,6 +141,7 @@ const Formations = () => {
                     </div>
                 </div>
             )}
+            </div>
         </section>
     );
 };
