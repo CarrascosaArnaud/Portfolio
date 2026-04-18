@@ -53,6 +53,7 @@ const hobbiesData = [
     },
 
 ];
+const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
 const HobbyCard = ({ hobby }) => {
     const [isExpanded, setIsExpanded] = useState(false);
@@ -94,6 +95,7 @@ const HobbyCard = ({ hobby }) => {
                     muted
                     loop
                     playsInline
+                    autoPlay
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
                     ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100 opacity-100'}`}
                 />
@@ -143,13 +145,13 @@ const Hobbies = () => {
             className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500"
         >
             <div className="absolute inset-0 z-0 pointer-events-none">
-                {[...Array(15)].map((_, i) => (
+                {[...Array(isMobile ? 5 : 12)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute rounded-full bg-blue-500/60 dark:bg-blue-400/30 blur-3xl"
+                        className="absolute rounded-full bg-blue-500/40 dark:bg-blue-400/20 blur-2xl"
                         style={{
-                            width: Math.random() * 300 + 100,
-                            height: Math.random() * 300 + 100,
+                            width: isMobile ? 120 : Math.random() * 300 + 100,
+                            height: isMobile ? 120 : Math.random() * 300 + 100,
                             top: `${Math.random() * 100}%`,
                             left: `${Math.random() * 100}%`,
                         }}
@@ -158,7 +160,11 @@ const Hobbies = () => {
                             x: [0, 60, 0],
                             scale: [1, 1.3, 1]
                         }}
-                        transition={{ duration: 8 + Math.random() * 5, repeat: Infinity }}
+                        transition={{
+                            duration: isMobile ? 6 : 10,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
                     />
                 ))}
             </div>
