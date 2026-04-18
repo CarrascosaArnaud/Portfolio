@@ -158,10 +158,10 @@ export default function About() {
 
                 <div className="mt-4 text-lg text-gray-600 dark:text-gray-400 font-medium h-8 flex items-center">
                     {typedText}
-                    <span className="text-blue-500 dark:text-blue-300 ml-1">
-                      {dynamicWord}
+                    <span className="text-blue-500 dark:text-blue-300 ml-1 flex items-center whitespace-nowrap">
+                        {dynamicWord}
+                        <motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} className="ml-1">|</motion.span>
                     </span>
-                    <motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} className="ml-1">|</motion.span>
                 </div>
 
                 <motion.div className="mt-6 flex space-x-6" initial={{ opacity: 0 }} animate={{ opacity: showContact ? 1 : 0 }}>

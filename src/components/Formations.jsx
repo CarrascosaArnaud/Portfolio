@@ -47,7 +47,7 @@ const Formations = () => {
     return (
         <section
             id="formations"
-            className="min-h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
+            className="h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
         >
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {[...Array(10)].map((_, i) => (
@@ -71,9 +71,9 @@ const Formations = () => {
                 ))}
             </div>
 
-            <div className="relative z-10 w-full flex flex-col items-center">
-            <div className="flex-none flex flex-col items-center w-full z-10 bg-transparent pb-8">
-                <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Parcours</h1>
+            <div className="relative z-10 w-full flex flex-col items-center h-full overflow-hidden">
+                <div className="flex-none flex flex-col items-center w-full z-10 bg-transparent pb-8">
+                    <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Parcours</h1>
                 <div className="flex justify-center gap-6">
                     <button
                         className={`px-6 py-2 rounded-full transition-all duration-300 text-sm font-semibold shadow-lg ${
@@ -98,11 +98,11 @@ const Formations = () => {
                 </div>
             </div>
 
-            <div
-                ref={containerRef}
-                className="flex-1 w-full max-w-4xl overflow-y-auto overflow-x-hidden relative px-4 scrollbar-hide"
-                style={{ scrollBehavior: 'smooth' }}
-            >
+                <div
+                    ref={containerRef}
+                    className="flex-1 w-full max-w-4xl overflow-y-auto overflow-x-hidden relative px-4 scrollbar-hide"
+                    style={{ scrollBehavior: 'smooth' }}
+                >
                 <div className="relative py-4">
                     <div
                         className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-500 transition-all duration-500"

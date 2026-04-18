@@ -95,7 +95,7 @@ const HobbyCard = ({ hobby }) => {
                     muted
                     loop
                     playsInline
-                    autoPlay
+                    preload="metadata"
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
                     ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100 opacity-100'}`}
                 />
@@ -148,7 +148,7 @@ const Hobbies = () => {
                 {[...Array(isMobile ? 5 : 12)].map((_, i) => (
                     <motion.div
                         key={i}
-                        className="absolute rounded-full bg-blue-500/40 dark:bg-blue-400/20 blur-2xl"
+                        className="absolute rounded-full bg-blue-500/40 dark:bg-blue-400/20 blur-lg md:blur-2xl"
                         style={{
                             width: isMobile ? 120 : Math.random() * 300 + 100,
                             height: isMobile ? 120 : Math.random() * 300 + 100,
@@ -200,10 +200,10 @@ const Hobbies = () => {
                 >
 
                     {loopData.map((hobby, index) => (
-                        <SwiperSlide key={hobby.id} className="py-10">
-                            <p className="text-sm md:text-base leading-relaxed">
-                            <HobbyCard hobby={hobby} />
-                            </p>
+                        <SwiperSlide key={index} className="py-10">
+                            <div className="h-full">
+                                <HobbyCard hobby={hobby} />
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
