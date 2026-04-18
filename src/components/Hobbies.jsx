@@ -94,7 +94,6 @@ const HobbyCard = ({ hobby }) => {
                     muted
                     loop
                     playsInline
-                    autoPlay
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
                     ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100 opacity-100'}`}
                 />
