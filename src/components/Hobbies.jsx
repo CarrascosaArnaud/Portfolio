@@ -32,7 +32,7 @@ const hobbiesData = [
     },    {
         id: 3,
         title: "Musique",
-        shortDesc: "Composition et écoute active",
+        shortDesc: "Pratique et écoute",
         longDesc: "J'ai appris le solfège à mes 8 ans avec des cours de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.",
         image: musique,
     },

@@ -48,8 +48,9 @@ const Formations = () => {
             id="formations"
             className="min-h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-[#e0e7ff] dark:bg-[#2e1065] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
         >
-            <div className="flex-none flex flex-col items-center w-full z-10 bg-inherit pb-4">
-                <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Parcours</h1>
+            {/* Correction : bg-transparent au lieu de bg-inherit pour éviter la coupure de couleur */}
+            <div className="flex-none flex flex-col items-center w-full z-10 bg-transparent pb-8">
+                <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Parcours</h1>
                 <div className="flex justify-center gap-6">
                     <button
                         className={`px-6 py-2 rounded-full transition-all duration-300 text-sm font-semibold shadow-lg ${

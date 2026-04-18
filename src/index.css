@@ -95,3 +95,72 @@ h1 {
   }
 }
 
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes bubbleUp {
+  0% {
+    transform: translateY(120dvh) scale(0.5);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  10% {
+    scale: 1;
+  }
+  90% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    transform: translateY(-20dvh) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes bubbleWobble {
+  0%, 100% { transform: translateX(0px); }
+  50% { transform: translateX(15px); }
+}
+.bubble-wrapper {
+  position: absolute;
+  bottom: 0;
+  animation-name: bubbleUp;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.bubble-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 2px solid rgba(59, 130, 246, 0.4);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-blur: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  animation: bubbleWobble 4s ease-in-out infinite;
+}
+
+.dark .bubble-content {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
