@@ -142,32 +142,34 @@ const Hobbies = () => {
     return (
         <section
             id="hobbies"
-            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-tr from-[#f3e8ff] to-[#ccfbf1] dark:from-[#2e1065] dark:to-[#042f2e] transition-colors duration-500"
+            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden bg-gradient-to-t from-[#e0e7ff] to-[#f3e8ff] dark:from-[#2e1065] dark:to-[#1e1b4b] transition-colors duration-500"
         >
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                {[...Array(isMobile ? 5 : 12)].map((_, i) => (
-                    <motion.div
-                        key={i}
-                        className="absolute rounded-full bg-blue-500/40 dark:bg-blue-400/20 blur-lg md:blur-2xl"
-                        style={{
-                            width: isMobile ? 120 : Math.random() * 300 + 100,
-                            height: isMobile ? 120 : Math.random() * 300 + 100,
-                            top: `${Math.random() * 100}%`,
-                            left: `${Math.random() * 100}%`,
-                        }}
-                        animate={{
-                            y: [0, -120, 0],
-                            x: [0, 60, 0],
-                            scale: [1, 1.3, 1]
-                        }}
-                        transition={{
-                            duration: isMobile ? 6 : 10,
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    />
-                ))}
-            </div>
+            {!isMobile && (
+                <div className="absolute inset-0 z-0 pointer-events-none">
+                    {[...Array(12)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            className="absolute rounded-full bg-blue-500/40 dark:bg-blue-400/20 blur-2xl"
+                            style={{
+                                width: Math.random() * 300 + 100,
+                                height: Math.random() * 300 + 100,
+                                top: `${Math.random() * 100}%`,
+                                left: `${Math.random() * 100}%`,
+                            }}
+                            animate={{
+                                y: [0, -120, 0],
+                                x: [0, 60, 0],
+                                scale: [1, 1.3, 1]
+                            }}
+                            transition={{
+                                duration: 10,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        />
+                    ))}
+                </div>
+            )}
 
             <div className="relative z-10 w-full flex flex-col items-center">
                 <h1 className="text-4xl font-bold mb-16 text-gray-900 dark:text-white tracking-widest">

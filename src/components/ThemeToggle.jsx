@@ -16,7 +16,7 @@ export default function ThemeToggle() {
             <img
                 src={theme === "dark" ? sunIcon : moonIcon}
                 alt="Toggle Theme"
-                className="w-8 h-8 object-contain dark:invert"
+                className={`w-8 h-8 object-contain ${theme === "light" ? "" : "invert"}`}
             />
         </motion.button>
     );

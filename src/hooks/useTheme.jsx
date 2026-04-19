@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 
 export const useTheme = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") || "system");
+    const [theme, setTheme] = useState(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem("theme");
+            if (saved) return saved;
+            return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        return "light";
+    });
 
     useEffect(() => {
         const root = window.document.documentElement;
-        const applyTheme = () => {
-            const isDark =
-                theme === "dark" ||
-                (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-
-            if (isDark) {
-                root.classList.add("dark");
-            } else {
-                root.classList.remove("dark");
-            }
-        };
-        applyTheme();
+        if (theme === "dark") {
+            root.classList.add("dark");
+        } else {
+            root.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
     }, [theme]);
 
     const toggleTheme = () => {
-        const newTheme = theme === "dark" ? "light" : "dark";
-        setTheme(newTheme);
-        localStorage.setItem("theme", newTheme);
+        setTheme((prev) => (prev === "light" ? "dark" : "light"));
     };
 
     return { theme, toggleTheme };

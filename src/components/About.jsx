@@ -35,7 +35,7 @@ const skillAssets = [
     { name: "TypeScript", src: Typescript_logo }, { name: "Vue.js", src: VueJS_logo },
 ];
 
-const qualitiesList = ["Front", "Back", "Fullstack", "Créatif", "Rigoureux", "Passionné", "Curieux", "Organisé", "Curieux", "Autonome", "Polyvalent", "Agile"];
+const qualitiesList = ["Front", "Back", "Fullstack", "Créatif", "Rigoureux", "Passionné", "Curieux", "Organisé", "Autonome", "Polyvalent", "Agile"];
 
 export default function About() {
     const [typedText, setTypedText] = useState("");
@@ -129,7 +129,7 @@ export default function About() {
     };
 
     return (
-        <section id="about" className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-white dark:bg-[#0f172a] transition-colors duration-500">
+        <section id="about" className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-gradient-to-b from-[#f0f9ff] via-[#e0e7ff] to-[#f3e8ff] dark:from-[#0f172a] dark:to-[#2e1065] transition-colors duration-500">
             <div className="absolute inset-0 z-50 pointer-events-none">
                 <AnimatePresence>
                     {bubbles.map((bubble) => (
@@ -152,15 +152,15 @@ export default function About() {
             </div>
 
             <div className="relative z-10 flex flex-col items-center">
-                <motion.h1 className="text-5xl md:text-7xl font-bold" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.25 }}>
+                <motion.h1 className="text-5xl md:text-7xl font-bold text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.25 }}>
                     Salut, moi c'est <span className="text-blue-600 dark:text-gray-400">Arnaud</span>
                 </motion.h1>
 
-                <div className="mt-4 text-lg text-gray-600 dark:text-gray-400 font-medium h-8 flex items-center">
-                    {typedText}
-                    <span className="text-blue-500 dark:text-blue-300 ml-1 flex items-center whitespace-nowrap">
+                <div className="mt-4 text-sm md:text-lg text-gray-600 dark:text-gray-400 font-medium h-8 flex items-center whitespace-nowrap overflow-visible">
+                    <span className="shrink-0">{typedText}</span>
+                    <span className="text-blue-500 dark:text-blue-300 ml-1 flex items-center flex-nowrap">
                         {dynamicWord}
-                        <motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} className="ml-1">|</motion.span>
+                        <motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.8 }} className="ml-1 shrink-0">|</motion.span>
                     </span>
                 </div>
 
