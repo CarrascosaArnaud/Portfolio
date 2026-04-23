@@ -60,15 +60,13 @@ const HobbyCard = ({ hobby }) => {
     const videoRef = useRef(null);
 
     const handleMouseEnter = () => {
-        if (videoRef.current) {
-            videoRef.current.play().catch(error => {
-                console.log("Autoplay prevented", error);
-            });
+        if (!isMobile && videoRef.current) {
+            videoRef.current.play().catch(error => console.log("Autoplay prevented", error));
         }
     };
 
     const handleMouseLeave = () => {
-        if (videoRef.current && !isExpanded) {
+        if (!isMobile && videoRef.current && !isExpanded) {
             videoRef.current.pause();
             videoRef.current.currentTime = 0;
         }
@@ -85,10 +83,11 @@ const HobbyCard = ({ hobby }) => {
                 src={hobby.image}
                 alt={hobby.title}
                 className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0
-          ${isExpanded ? 'scale-110 blur-md opacity-40' : 'group-hover:scale-105 group-hover:blur-0 blur-[2px] opacity-70'}`}
+                ${isExpanded ? 'scale-110 blur-md opacity-40' : 'group-hover:scale-105 opacity-70'} 
+                ${!isMobile && !isExpanded ? 'group-hover:blur-0 blur-[2px]' : 'blur-0'}`}
             />
 
-            {hobby.video && (
+            {hobby.video && !isMobile && (
                 <video
                     ref={videoRef}
                     src={hobby.video}
@@ -97,7 +96,7 @@ const HobbyCard = ({ hobby }) => {
                     playsInline
                     preload="metadata"
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
-                    ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100 opacity-100'}`}
+                    ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100'}`}
                 />
             )}
 
@@ -140,10 +139,7 @@ const HobbyCard = ({ hobby }) => {
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
     return (
-        <section
-            id="hobbies"
-            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden bg-gradient-to-t from-[#e0e7ff] to-[#f3e8ff] dark:from-[#2e1065] dark:to-[#1e1b4b] transition-colors duration-500"
-        >
+        <section id="hobbies" className="min-h-[100dvh] pt-[12vh] pb-[5vh] flex flex-col items-center relative overflow-hidden">
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     {[...Array(12)].map((_, i) => (
@@ -172,9 +168,7 @@ const Hobbies = () => {
             )}
 
             <div className="relative z-10 w-full flex flex-col items-center">
-                <h1 className="text-4xl font-bold mb-16 text-gray-900 dark:text-white tracking-widest">
-                    Hobbies
-                </h1>
+                <h2 className="section-title">Hobbies</h2>
 
             <div className="w-full">
                 <Swiper

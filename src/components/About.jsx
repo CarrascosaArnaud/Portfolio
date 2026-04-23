@@ -50,19 +50,18 @@ export default function About() {
     const baseText = "Concepteur | Développeur | ";
 
     useEffect(() => {
-        const bubbleTimeout = setTimeout(() => {
-            const generated = skillAssets.map((skill, index) => ({
-                id: `bubble-${index}`,
-                ...skill,
-                left: `${Math.random() * 85 + 7}%`,
-                size: `${Math.random() * 30 + 80}px`,
-                duration: Math.random() * 4 + 7,
-                delay: Math.random() * 20,
-                wobbleDelay: `-${Math.random() * 4}s`,
-                targetY: `-${100 - (Math.random() * 40 + 30)}vh`
-            }));
-            setBubbles(generated);
-        }, 1000);
+        const generated = skillAssets.map((skill, index) => ({
+            id: `bubble-${index}`,
+            ...skill,
+            left: `${Math.random() * 85 + 7}%`,
+            size: `${Math.random() * 30 + 80}px`,
+            duration: Math.random() * 6 + 10,
+            delay: Math.random() * 12,
+            wobbleDelay: `-${Math.random() * 4}s`,
+            targetY: `-${Math.random() * 50 + 90}vh`,
+            zIndex: Math.floor(Math.random() * 40)
+        }));
+        setBubbles(generated);
 
         let i = 0;
         const interval = setInterval(() => {
@@ -75,26 +74,20 @@ export default function About() {
             }
         }, 40);
 
-        return () => { clearTimeout(bubbleTimeout); clearInterval(interval); };
+        return () => clearInterval(interval);
     }, []);
 
     useEffect(() => {
         if (!currentQuality) return;
 
-        const typingSpeed = 130;
-        const deletingSpeed = 50;
-        const wordPause = 700;
+        if (!isDeleting && dynamicWord === currentQuality) {
+            const pauseTimer = setTimeout(() => setIsDeleting(true), 700);
+            return () => clearTimeout(pauseTimer);
+        }
 
         const timer = setTimeout(() => {
             if (!isDeleting) {
-                const nextText = currentQuality.substring(0, dynamicWord.length + 1);
-                setDynamicWord(nextText);
-
-                if (nextText === currentQuality) {
-                    setTimeout(() => {
-                        setIsDeleting(true);
-                    }, wordPause);
-                }
+                setDynamicWord(currentQuality.substring(0, dynamicWord.length + 1));
             } else {
                 const nextText = currentQuality.substring(0, dynamicWord.length - 1);
                 setDynamicWord(nextText);
@@ -103,18 +96,16 @@ export default function About() {
                     setIsDeleting(false);
 
                     let newPool = pool.filter(word => word !== currentQuality);
-
                     if (newPool.length === 0) {
                         newPool = [...qualitiesList].filter(word => word !== currentQuality);
                     }
 
                     const nextWord = newPool[Math.floor(Math.random() * newPool.length)];
-
                     setPool(newPool);
                     setCurrentQuality(nextWord);
                 }
             }
-        }, isDeleting ? deletingSpeed : typingSpeed);
+        }, isDeleting ? 50 : 130);
 
         return () => clearTimeout(timer);
     }, [dynamicWord, isDeleting, currentQuality, pool]);
@@ -130,13 +121,17 @@ export default function About() {
 
     return (
         <section id="about" className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-gradient-to-b from-[#f0f9ff] via-[#e0e7ff] to-[#f3e8ff] dark:from-[#0f172a] dark:to-[#2e1065] transition-colors duration-500">
-            <div className="absolute inset-0 z-50 pointer-events-none">
+
+            <div className="absolute inset-0 z-0 pointer-events-none">
                 <AnimatePresence>
                     {bubbles.map((bubble) => (
                         <motion.div
                             key={bubble.id}
                             className="absolute bottom-0 pointer-events-auto cursor-pointer"
-                            style={{ left: bubble.left }}
+                            style={{
+                                left: bubble.left,
+                                zIndex: bubble.zIndex
+                            }}
                             initial={{ y: "20vh", opacity: 0 }}
                             animate={{ y: bubble.targetY, opacity: [0, 1, 1, 0] }}
                             exit={{ opacity: 0, scale: 1.5, transition: { duration: 0.2 } }}
@@ -151,8 +146,8 @@ export default function About() {
                 </AnimatePresence>
             </div>
 
-            <div className="relative z-10 flex flex-col items-center">
-                <motion.h1 className="text-5xl md:text-7xl font-bold text-center" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.25 }}>
+            <div className="relative z-20 flex flex-col items-center">
+                <motion.h1 className="text-5xl md:text-7xl font-bold text-center text-gray-900 dark:text-white" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.25 }}>
                     Salut, moi c'est <span className="text-blue-600 dark:text-gray-400">Arnaud</span>
                 </motion.h1>
 
@@ -179,6 +174,24 @@ export default function About() {
                     </motion.a>
                 </motion.div>
             </div>
+
+            <motion.div
+                className="absolute bottom-8 left-1/2 flex flex-col items-center z-30 text-gray-500 dark:text-gray-400 opacity-80"
+                initial={{ opacity: 0, x: "-50%" }}
+                animate={{ opacity: 1, x: "-50%" }}
+                transition={{ delay: 2.5, duration: 1 }}
+            >
+                <span className="text-[10px] tracking-[0.3em] uppercase font-bold mb-2">Défiler</span>
+                <motion.div
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                </motion.div>
+            </motion.div>
+
         </section>
     );
 }

@@ -73,7 +73,7 @@ const Formations = () => {
 
             <div className="relative z-10 w-full flex flex-col items-center h-full overflow-hidden">
                 <div className="flex-none flex flex-col items-center w-full z-10 bg-transparent pb-8">
-                    <h1 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white uppercase tracking-widest">Parcours</h1>
+                    <h2 className="section-title">Parcours</h2>
                 <div className="flex justify-center gap-6">
                     <button
                         className={`px-6 py-2 rounded-full transition-all duration-300 text-sm font-semibold shadow-lg ${
