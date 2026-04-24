@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
+import CV from "../assets/CV_2026-04-24_Arnaud_Carrascosa.pdf"
 
 const parcours = [
     { year: "2019-2021", title: "BTS SNIR", details: "Effectué à Toulouse, j'étais Major de promotion pendant les deux ans. J'ai fait ma deuxième année en alternance aux Ateliers de la Haute Garonne" },
@@ -98,7 +99,7 @@ const Parcours = () => {
                         </button>
 
                         <a
-                            href="/CV_2026-04-24_Arnaud_Carrascosa.pdf"
+                            href={CV}
                             download="CV_Carrascosa_Arnaud.pdf"
                             className="px-6 py-2 rounded-full bg-white/10 dark:bg-white/5 text-gray-600 dark:text-gray-300 hover:bg-green-600 hover:text-white transition-all duration-300 text-sm font-semibold shadow-lg flex items-center gap-2"
                         >
