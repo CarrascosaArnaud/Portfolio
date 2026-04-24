@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import CV from "../assets/CV_2026-04-24_Arnaud_Carrascosa.pdf"
+import CV from "../assets/CV_2026-04-24_Arnaud_Carrascosa.pdf";
+import ClickIndicator from "./ClickIndicator";
 
 const parcours = [
-    { year: "2019-2021", title: "BTS SNIR", details: "Effectué à Toulouse, j'étais Major de promotion pendant les deux ans. J'ai fait ma deuxième année en alternance aux Ateliers de la Haute Garonne" },
+    { year: "2019-2021", title: "BTS SNIR", details: "BTS SNIR : Brevet de Technicien Supérieur en Système Numériques option Informatique & Réseau. Diplôme effectué à Saint-Orens-de-Gameville, dans la région Toulousaine. C'est un BTS assez généraliste de l'informatique, en dehors des matières classiques comme anglais math physique, j'ai adoré pouvoir toucher à pleins de sous domaine différents de l'informatique, comme la programmation web front & back, le réseau, l'IOT, l'électronique... J'ai été Major de promotion pendant les deux années, malgré le fait que lors de la deuxième année j'ai été le premier (et seul) élève de SNIR au lycée Pierre Paul Riquet à être en alternance. Ils avaient une autre fillière de BTS en alternance mais les SNIR n'en avaient jamais fait. J'ai donc loupé des cours que je devais ensuite rattraper puisque j'allais en entreprise quand le reste de ma classe allait en cours." },
     { year: "2021-2022", title: "Ecole d'ingénieur en informatique", details: "Première année à 3iL Rodez, en alternance à Sopra Steria" },
     { year: "2022-2023", title: "Bachelor en Marketing Commerce & Négociation", details: "Année effectuée en alternance dans deux entreprises différentes, FeelU puis Lundi Matin" },
     { year: "2023-2024", title: "POE Développeur Java", details: "Formation spécialisée dans le développement Java" },
@@ -136,10 +137,7 @@ const Parcours = () => {
                                     }}
                                 >
                                     {!hasInteracted && index === 0 && (
-                                        <span className={`absolute -top-2 ${index % 2 === 0 ? '-right-2' : '-left-2'} flex h-4 w-4 z-20`}>
-                                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-                                            <span className="relative inline-flex rounded-full h-4 w-4 bg-blue-600 border-2 border-white dark:border-gray-800"></span>
-                                        </span>
+                                        <ClickIndicator className={`absolute -top-2 ${index % 2 === 0 ? '-right-2' : '-left-2'} z-20`} />
                                     )}
 
                                     <h2 className="font-bold text-lg text-blue-600 dark:text-blue-400 group-hover:text-blue-500 transition-colors">{formation.year}</h2>

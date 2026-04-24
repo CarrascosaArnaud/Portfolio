@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import ClickIndicator from "./ClickIndicator";
 
 import jeuxVideo from "../assets/the eggscape-gameplay.png";
 import musique from "../assets/guitar-piano.jpg";
@@ -21,21 +22,33 @@ const hobbiesData = [
     { id: 5, title: "Montage vidéo", shortDesc: "Utilisation régulière de Davinci Resolve", longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition.", image: montageVideoImage, video: montageVideo },
 ];
 
-const HobbyCard = ({ hobby, isMobile }) => {
+const HobbyCard = ({ hobby, isMobile, showIndicator, onInteract }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const videoRef = useRef(null);
 
     return (
         <div
             className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300 isolate transform-gpu"
-            onClick={() => setIsExpanded(!isExpanded)}
+            style={{
+                WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+                WebkitBackfaceVisibility: "hidden"
+            }}
+            onClick={() => {
+                setIsExpanded(!isExpanded);
+                onInteract();
+            }}
         >
+            {showIndicator && (
+                <ClickIndicator className="absolute top-4 right-4 z-40" />
+            )}
+
             <img
                 src={hobby.image}
                 alt={hobby.title}
                 className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0 will-change-transform
                 ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'opacity-70 md:group-hover:opacity-40'} 
                 ${!isMobile && !isExpanded ? 'blur-[2px] md:group-hover:blur-0' : ''}`}
+                style={{ WebkitBackfaceVisibility: "hidden" }}
             />
 
             {!isMobile && hobby.video && (
@@ -88,6 +101,7 @@ const HobbyCard = ({ hobby, isMobile }) => {
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
     const [isMobile, setIsMobile] = useState(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -95,6 +109,12 @@ const Hobbies = () => {
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
+
+    const handleInteraction = () => {
+        if (!hasInteracted) {
+            setHasInteracted(true);
+        }
+    };
 
     return (
         <section
@@ -147,7 +167,12 @@ const Hobbies = () => {
                     >
                         {loopData.map((hobby, index) => (
                             <SwiperSlide key={`${hobby.id}-${index}`} className="py-6 md:py-10">
-                                <HobbyCard hobby={hobby} isMobile={isMobile} />
+                                <HobbyCard
+                                    hobby={hobby}
+                                    isMobile={isMobile}
+                                    showIndicator={!hasInteracted && hobby.id === 1}
+                                    onInteract={handleInteraction}
+                                />
                             </SwiperSlide>
                         ))}
                     </Swiper>
