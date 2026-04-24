@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect } from "react";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Formations from "./components/Formations.jsx";
+import Formations from "./components/./Parcours.jsx";
 import Hobbies from "./components/Hobbies";
 import Navbar from "./components/Navbar";
 import FadeIn from "./components/FadeIn";
