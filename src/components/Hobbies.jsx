@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { motion, AnimatePresence } from "framer-motion";
@@ -14,55 +14,20 @@ import montageVideo from "../assets/zenitsu-loop.mp4"
 import montageVideoImage from "../assets/zenitsu.jpg"
 
 const hobbiesData = [
-    {
-        id: 1,
-        title: "Développement de jeux vidéo",
-        shortDesc: "Développement de jeux indépendants avec Godot",
-        longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise exclusivement Godot.",
-        image: jeuxVideo,
-        link: "https://iokko.itch.io/"
-    },
-    {
-        id: 2,
-        title: "Modélisation 3D",
-        shortDesc: "Apprentissage de Blender en autodidacte",
-        longDesc: "J'ai commencé différents projets Blender pour apprendre à modéliser des personnages et environnement pour créer des jeux vidéos en 3D.",
-        image: modelisationImage,
-        video: modelisationVideo
-    },
-    {
-        id: 3,
-        title: "Musique",
-        shortDesc: "Pratique et écoute",
-        longDesc: "J'ai appris le solfège à mes 8 ans avec des cours de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.",
-        image: musique,
-    },
-    {
-        id: 4,
-        title: "Sports",
-        shortDesc: "Arts martiaux, musculation, escalade...",
-        longDesc: "Le sport est indispensable à mes yeux, ça apprend la discipline en plus d'améliorer la santé mentale et physique. J'ai commencé le sport très tôt et j'ai pu pratiquer plein d'activités différentes, en club comme en solitaire.",
-        image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500",
-    },
-    {
-        id: 5,
-        title: "Montage vidéo",
-        shortDesc: "Utilisation régulière de Davinci Resolve",
-        longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition.",
-        image: montageVideoImage,
-        video: montageVideo
-    },
+    { id: 1, title: "Développement de jeux vidéo", shortDesc: "Développement de jeux indépendants avec Godot", longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise exclusivement Godot.", image: jeuxVideo, link: "https://iokko.itch.io/" },
+    { id: 2, title: "Modélisation 3D", shortDesc: "Apprentissage de Blender en autodidacte", longDesc: "J'ai commencé différents projets Blender pour apprendre à modéliser des personnages et environnement pour créer des jeux vidéos en 3D.", image: modelisationImage, video: modelisationVideo },
+    { id: 3, title: "Musique", shortDesc: "Pratique et écoute", longDesc: "J'ai appris le solfège à mes 8 ans avec des cours de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.", image: musique },
+    { id: 4, title: "Sports", shortDesc: "Arts martiaux, musculation, escalade...", longDesc: "Le sport est indispensable à mes yeux, ça apprend la discipline en plus d'améliorer la santé mentale et physique. J'ai commencé le sport très tôt et j'ai pu pratiquer plein d'activités différentes, en club comme en solitaire.", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500" },
+    { id: 5, title: "Montage vidéo", shortDesc: "Utilisation régulière de Davinci Resolve", longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition.", image: montageVideoImage, video: montageVideo },
 ];
 
-const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-const HobbyCard = ({ hobby }) => {
+const HobbyCard = ({ hobby, isMobile }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const videoRef = useRef(null);
 
     const handleMouseEnter = () => {
         if (!isMobile && videoRef.current) {
-            videoRef.current.play().catch(error => console.log("Autoplay prevented", error));
+            videoRef.current.play().catch(() => {});
         }
     };
 
@@ -75,7 +40,7 @@ const HobbyCard = ({ hobby }) => {
 
     return (
         <div
-            className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300"
+            className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300 isolate transform-gpu"
             onClick={() => setIsExpanded(!isExpanded)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -83,9 +48,9 @@ const HobbyCard = ({ hobby }) => {
             <img
                 src={hobby.image}
                 alt={hobby.title}
-                className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0
-                ${isExpanded ? 'scale-110 blur-md opacity-40' : 'group-hover:scale-105 opacity-70'} 
-                ${!isMobile && !isExpanded ? 'group-hover:blur-0 blur-[2px]' : 'blur-0'}`}
+                className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0 will-change-transform
+                ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'group-hover:scale-105 opacity-70'} 
+                ${!isMobile && !isExpanded ? 'group-hover:blur-0 blur-[2px]' : ''}`}
             />
 
             {hobby.video && !isMobile && (
@@ -95,13 +60,12 @@ const HobbyCard = ({ hobby }) => {
                     muted
                     loop
                     playsInline
-                    preload="metadata"
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
                     ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100'}`}
                 />
             )}
 
-            <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/60 to-transparent transition-opacity duration-300 z-20 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-300 z-20 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
                 <h3 className="text-white text-2xl md:text-3xl font-bold">{hobby.title}</h3>
                 <p className="text-gray-300 text-sm md:text-base mt-2 md:mt-3 leading-relaxed">{hobby.shortDesc}</p>
             </div>
@@ -109,27 +73,25 @@ const HobbyCard = ({ hobby }) => {
             <AnimatePresence>
                 {isExpanded && (
                     <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 50 }}
-                        className="absolute inset-0 bg-gray-900/90 p-6 md:p-10 flex flex-col justify-center items-center text-center backdrop-blur-md z-30"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 bg-gray-900/95 md:bg-gray-900/90 p-6 md:p-10 flex flex-col justify-center items-center text-center z-30 md:backdrop-blur-md"
                     >
                         <h3 className="text-white text-2xl md:text-4xl font-bold mb-4 md:mb-6">{hobby.title}</h3>
                         <p className="text-gray-200 text-sm md:text-lg leading-relaxed mb-6 md:mb-8">{hobby.longDesc}</p>
 
-                        <div className="flex flex-col gap-4">
-                            {hobby.link && (
-                                <a
-                                    href={hobby.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    Lien vers mon Itch.io
-                                </a>
-                            )}
-                        </div>
+                        {hobby.link && (
+                            <a
+                                href={hobby.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-bold transition-all"
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                Lien vers mon Itch.io
+                            </a>
+                        )}
                     </motion.div>
                 )}
             </AnimatePresence>
@@ -139,30 +101,34 @@ const HobbyCard = ({ hobby }) => {
 
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     return (
         <section id="hobbies" className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden">
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                    {[...Array(12)].map((_, i) => (
+                    {[...Array(8)].map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute rounded-full bg-blue-500/40 dark:bg-blue-400/20 blur-2xl"
+                            className="absolute rounded-full bg-blue-500/20 blur-3xl"
                             style={{
-                                width: Math.random() * 300 + 100,
-                                height: Math.random() * 300 + 100,
-                                top: `${Math.random() * 100}%`,
-                                left: `${Math.random() * 100}%`,
+                                width: 250,
+                                height: 250,
+                                top: `${Math.random() * 80}%`,
+                                left: `${Math.random() * 80}%`,
                             }}
                             animate={{
-                                y: [0, -120, 0],
-                                x: [0, 60, 0],
-                                scale: [1, 1.3, 1]
+                                y: [0, -30, 0],
+                                opacity: [0.1, 0.3, 0.1]
                             }}
-                            transition={{
-                                duration: 10,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                         />
                     ))}
                 </div>
@@ -174,32 +140,21 @@ const Hobbies = () => {
                 <div className="w-full">
                     <Swiper
                         modules={[Navigation, Pagination]}
-                        pagination={{
-                            clickable: true,
-                            dynamicBullets: true
-                        }}
+                        pagination={{ clickable: true, dynamicBullets: true }}
                         spaceBetween={20}
                         slidesPerView={1.1}
                         centeredSlides={true}
                         loop={true}
                         grabCursor={true}
                         breakpoints={{
-                            768: {
-                                slidesPerView: 2.2,
-                                spaceBetween: 30
-                            },
-                            1280: {
-                                slidesPerView: 3.5,
-                                spaceBetween: 40
-                            },
+                            768: { slidesPerView: 2.2, spaceBetween: 30 },
+                            1280: { slidesPerView: 3.5, spaceBetween: 40 },
                         }}
                         className="px-4 md:px-10 pb-12"
                     >
                         {loopData.map((hobby, index) => (
-                            <SwiperSlide key={index} className="py-6 md:py-10">
-                                <div className="h-full">
-                                    <HobbyCard hobby={hobby} />
-                                </div>
+                            <SwiperSlide key={`${hobby.id}-${index}`} className="py-6 md:py-10">
+                                <HobbyCard hobby={hobby} isMobile={isMobile} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
