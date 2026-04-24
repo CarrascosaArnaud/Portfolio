@@ -25,43 +25,29 @@ const HobbyCard = ({ hobby, isMobile }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const videoRef = useRef(null);
 
-    const handleMouseEnter = () => {
-        if (!isMobile && videoRef.current) {
-            videoRef.current.play().catch(() => {});
-        }
-    };
-
-    const handleMouseLeave = () => {
-        if (!isMobile && videoRef.current && !isExpanded) {
-            videoRef.current.pause();
-            videoRef.current.currentTime = 0;
-        }
-    };
-
     return (
         <div
             className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300 isolate transform-gpu"
             onClick={() => setIsExpanded(!isExpanded)}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
         >
             <img
                 src={hobby.image}
                 alt={hobby.title}
                 className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0 will-change-transform
-                ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'group-hover:scale-105 opacity-70'} 
-                ${!isMobile && !isExpanded ? 'group-hover:blur-0 blur-[2px]' : ''}`}
+                ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'opacity-70 md:group-hover:opacity-40'} 
+                ${!isMobile && !isExpanded ? 'blur-[2px] md:group-hover:blur-0' : ''}`}
             />
 
-            {hobby.video && !isMobile && (
+            {!isMobile && hobby.video && (
                 <video
                     ref={videoRef}
                     src={hobby.video}
+                    autoPlay
                     muted
                     loop
                     playsInline
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
-                    ${isExpanded ? 'opacity-0' : 'opacity-0 md:group-hover:opacity-100'}`}
+                    ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
                 />
             )}
 
@@ -111,24 +97,31 @@ const Hobbies = () => {
     }, []);
 
     return (
-        <section id="hobbies" className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden">
+        <section
+            id="hobbies"
+            className={`min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden transition-colors duration-500
+                ${isMobile
+                ? "bg-gradient-to-b from-[#f3e8ff] to-[#e0e7ff] dark:from-[#1e1b4b] dark:to-[#0f172a]"
+                : "bg-white dark:bg-[#0f172a]"
+            }`}
+        >
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                    {[...Array(8)].map((_, i) => (
+                    {[...Array(6)].map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute rounded-full bg-blue-500/20 blur-3xl"
+                            className="absolute rounded-full bg-blue-500/10 blur-3xl"
                             style={{
-                                width: 250,
-                                height: 250,
+                                width: 300,
+                                height: 300,
                                 top: `${Math.random() * 80}%`,
                                 left: `${Math.random() * 80}%`,
                             }}
                             animate={{
-                                y: [0, -30, 0],
-                                opacity: [0.1, 0.3, 0.1]
+                                y: [0, -20, 0],
+                                opacity: [0.1, 0.2, 0.1]
                             }}
-                            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                         />
                     ))}
                 </div>
