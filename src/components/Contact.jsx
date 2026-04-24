@@ -64,12 +64,12 @@ const Contact = () => {
 
     return (
         <section id="contact" className="min-h-[100dvh] pt-[12vh] pb-[5vh] flex flex-col items-center justify-start relative overflow-hidden">
-            <div className="z-20 w-full max-w-md px-4">
+            <div className="z-20 w-full max-w-md md:max-w-2xl px-4 text-center">
                 <h2 className="section-title">Me Contacter</h2>
 
                 <form
                     onSubmit={handleSubmit}
-                    className="p-10 rounded-2xl shadow-2xl w-full max-w-md space-y-5 bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10"
+                    className="p-6 md:p-10 rounded-2xl shadow-2xl w-full space-y-5 bg-white/30 dark:bg-white/5 backdrop-blur-xl border border-white/50 dark:border-white/10"
                 >
                     <div className="space-y-1 text-left">
                         <label className="text-xs font-bold uppercase tracking-widest text-gray-500 dark:text-gray-400 ml-1">Email</label>

@@ -29,7 +29,8 @@ const hobbiesData = [
         longDesc: "J'ai commencé différents projets Blender pour apprendre à modéliser des personnages et environnement pour créer des jeux vidéos en 3D.",
         image: modelisationImage,
         video: modelisationVideo
-    },    {
+    },
+    {
         id: 3,
         title: "Musique",
         shortDesc: "Pratique et écoute",
@@ -51,8 +52,8 @@ const hobbiesData = [
         image: montageVideoImage,
         video: montageVideo
     },
-
 ];
+
 const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
 const HobbyCard = ({ hobby }) => {
@@ -74,7 +75,7 @@ const HobbyCard = ({ hobby }) => {
 
     return (
         <div
-            className="relative w-full h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300"
+            className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300"
             onClick={() => setIsExpanded(!isExpanded)}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -100,9 +101,9 @@ const HobbyCard = ({ hobby }) => {
                 />
             )}
 
-            <div className={`absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/60 to-transparent transition-opacity duration-300 z-20 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
-                <h3 className="text-white text-3xl font-bold">{hobby.title}</h3>
-                <p className="text-gray-300 text-base mt-3 leading-relaxed">{hobby.shortDesc}</p>
+            <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/60 to-transparent transition-opacity duration-300 z-20 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
+                <h3 className="text-white text-2xl md:text-3xl font-bold">{hobby.title}</h3>
+                <p className="text-gray-300 text-sm md:text-base mt-2 md:mt-3 leading-relaxed">{hobby.shortDesc}</p>
             </div>
 
             <AnimatePresence>
@@ -111,10 +112,10 @@ const HobbyCard = ({ hobby }) => {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 50 }}
-                        className="absolute inset-0 bg-gray-900/90 p-10 flex flex-col justify-center items-center text-center backdrop-blur-md z-30"
+                        className="absolute inset-0 bg-gray-900/90 p-6 md:p-10 flex flex-col justify-center items-center text-center backdrop-blur-md z-30"
                     >
-                        <h3 className="text-white text-4xl font-bold mb-6">{hobby.title}</h3>
-                        <p className="text-gray-200 text-lg leading-relaxed mb-8">{hobby.longDesc}</p>
+                        <h3 className="text-white text-2xl md:text-4xl font-bold mb-4 md:mb-6">{hobby.title}</h3>
+                        <p className="text-gray-200 text-sm md:text-lg leading-relaxed mb-6 md:mb-8">{hobby.longDesc}</p>
 
                         <div className="flex flex-col gap-4">
                             {hobby.link && (
@@ -139,7 +140,7 @@ const HobbyCard = ({ hobby }) => {
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
     return (
-        <section id="hobbies" className="min-h-[100dvh] pt-[12vh] pb-[5vh] flex flex-col items-center relative overflow-hidden">
+        <section id="hobbies" className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden">
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     {[...Array(12)].map((_, i) => (
@@ -170,40 +171,39 @@ const Hobbies = () => {
             <div className="relative z-10 w-full flex flex-col items-center">
                 <h2 className="section-title">Hobbies</h2>
 
-            <div className="w-full">
-                <Swiper
-                    modules={[Navigation, Pagination]}
-                    pagination={{
-                        clickable: true,
-                        dynamicBullets: true
-                    }}
-                    spaceBetween={20}
-                    slidesPerView={1.35}
-                    centeredSlides={true}
-                    loop={true}
-                    grabCursor={true}
-                    breakpoints={{
-                        768: {
-                            slidesPerView: 2.5,
-                            spaceBetween: 40
-                        },
-                        1280: {
-                            slidesPerView: 3.8,
-                            spaceBetween: 40
-                        },
-                    }}
-                    className="px-10 pb-12"
-                >
-
-                    {loopData.map((hobby, index) => (
-                        <SwiperSlide key={index} className="py-10">
-                            <div className="h-full">
-                                <HobbyCard hobby={hobby} />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
+                <div className="w-full">
+                    <Swiper
+                        modules={[Navigation, Pagination]}
+                        pagination={{
+                            clickable: true,
+                            dynamicBullets: true
+                        }}
+                        spaceBetween={20}
+                        slidesPerView={1.1}
+                        centeredSlides={true}
+                        loop={true}
+                        grabCursor={true}
+                        breakpoints={{
+                            768: {
+                                slidesPerView: 2.2,
+                                spaceBetween: 30
+                            },
+                            1280: {
+                                slidesPerView: 3.5,
+                                spaceBetween: 40
+                            },
+                        }}
+                        className="px-4 md:px-10 pb-12"
+                    >
+                        {loopData.map((hobby, index) => (
+                            <SwiperSlide key={index} className="py-6 md:py-10">
+                                <div className="h-full">
+                                    <HobbyCard hobby={hobby} />
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
             </div>
         </section>
     );
