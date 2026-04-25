@@ -4,24 +4,36 @@ import CV from "../assets/CV_2026-04-24_Arnaud_Carrascosa.pdf";
 import ClickIndicator from "./ClickIndicator";
 
 const parcours = [
-    { year: "2019-2021", title: "BTS SNIR", details: "BTS SNIR : Brevet de Technicien Supérieur en Système Numériques option Informatique & Réseau. Diplôme effectué à Saint-Orens-de-Gameville, dans la région Toulousaine. C'est un BTS assez généraliste de l'informatique, en dehors des matières classiques comme anglais math physique, j'ai adoré pouvoir toucher à pleins de sous domaine différents de l'informatique, comme la programmation web front & back, le réseau, l'IOT, l'électronique... J'ai été Major de promotion pendant les deux années, malgré le fait que lors de la deuxième année j'ai été le premier (et seul) élève de SNIR au lycée Pierre Paul Riquet à être en alternance. Ils avaient une autre fillière de BTS en alternance mais les SNIR n'en avaient jamais fait. J'ai donc loupé des cours que je devais ensuite rattraper puisque j'allais en entreprise quand le reste de ma classe allait en cours." },
-    { year: "2021-2022", title: "Ecole d'ingénieur en informatique", details: "Première année à 3iL Rodez, en alternance à Sopra Steria" },
-    { year: "2022-2023", title: "Bachelor en Marketing Commerce & Négociation", details: "Année effectuée en alternance dans deux entreprises différentes, FeelU puis Lundi Matin" },
-    { year: "2023-2024", title: "POE Développeur Java", details: "Formation spécialisée dans le développement Java" },
-    { year: "2024-2025", title: "Titre Professionnel CDA", details: "Titre professionnel de niveau 6, équivalent bac +3/4 de Concepteur Développeur d'Applications, effectué en alternance chez Dawan" }
+
+    { year: "2024-2025", title: "Titre Professionnel CDA", details: "Titre professionnel de niveau 6 (équivalent bac +3/4) de <b>Concepteur Développeur d'Applications</b>, effectué en alternance chez Dawan." },
+    { year: "2023-2024", title: "POE Développeur Java", details: "Formation spécialisée dans le développement <b>Java</b>." },
+    { year: "2022-2023", title: "Bachelor en Marketing Commerce & Négociation", details: "Année effectuée en alternance dans deux entreprises différentes : <b>FeelU</b> puis <b>Lundi Matin</b>." },
+    { year: "2021-2022", title: "Ecole d'ingénieur en informatique", details: "Première année à <b>3iL Rodez</b>, en alternance à Sopra Steria." },
+    {
+        year: "2019-2021",
+        title: "BTS SNIR",
+        details: `<b>BTS SNIR</b> : Brevet de Technicien Supérieur en Système Numériques option Informatique & Réseau.<br /><br />
+        Diplôme effectué à Saint-Orens-de-Gameville, dans la région Toulousaine. C'est un BTS assez généraliste de l'informatique.<br /><br />
+        En dehors des matières classiques comme l'anglais, les maths et la physique, j'ai adoré pouvoir toucher à plein de sous-domaines différents :<br />
+        • Programmation web <b>front & back</b><br />
+        • Réseau et infrastructure<br />
+        • IOT et électronique<br /><br />
+        J'ai été <b>Major de promotion</b> pendant les deux années, malgré le fait que lors de la deuxième année j'ai été le premier (et seul) élève de SNIR au lycée Pierre Paul Riquet à être en <b>alternance</b>.Ils avaient une autre fillière de BTS en alternance mais les SNIR n'en avaient jamais fait. J'ai donc loupé des cours que je devais ensuite rattraper puisque j'allais en entreprise quand le reste de ma classe allait en cours.`
+    }
 ];
+
 const experiences = [
-    { year: "2020-2021", title: "Alternant technicien en informatique", details: "Alternance d'un an chez les Ateliers de la Haute Garonne, le leader mondial du rivet aéronautique" },
-    { year: "2021-2022", title: "Apprenti ingénieur en informatique", details: "Alternance d'un an chez Sopra Steria, une des ESN les plus impactantes en Europe" },
-    { year: "2022", title: "Mission d'intérim en technicien réseau", details: "Mission d'intérim effectuée chez General Electric, une multinationale présente dans plus de 150 pays" },
-    { year: "2022-2023", title: "Apprenti commercial", details: "Alternance chez FeelU, une petite startup spécilaisée dans la réalitée virtuelle" },
-    { year: "2023", title: "Assistant Product Owner", details: "Alternance chez Lundi Matin, une ESN à la croissance importante" },
-    { year: "2024-2025", title: "Concepteur Développeur d'Applications", details: "Alternance d'un an chez Dawan Montpellier" }
+    { year: "2024-2025", title: "Concepteur Développeur d'Applications", details: "Alternance d'un an chez <b>Dawan Montpellier</b>." },
+    { year: "2023", title: "Assistant Product Owner", details: "Alternance chez <b>Lundi Matin</b>, une ESN à la croissance importante." },
+    { year: "2022-2023", title: "Apprenti commercial", details: "Alternance chez <b>FeelU</b>, une petite startup spécialisée dans la réalité virtuelle." },
+    { year: "2022", title: "Mission d'intérim en technicien réseau", details: "Mission d'intérim effectuée chez <b>General Electric</b>, une multinationale présente dans plus de 150 pays." },
+    { year: "2021-2022", title: "Apprenti ingénieur en informatique", details: "Alternance d'un an chez <b>Sopra Steria</b>, une des ESN les plus impactantes en Europe." },
+    { year: "2020-2021", title: "Alternant technicien en informatique", details: "Alternance d'un an chez les <b>Ateliers de la Haute Garonne</b>, le leader mondial du rivet aéronautique." }
 ];
 
 const Parcours = () => {
     const [activeTab, setActiveTab] = useState("parcours");
-    const formationsData = activeTab === "parcours" ? parcours : experiences;
+    const formationsData = activeTab === "parcours" ? experiences : parcours;
     const [selectedFormation, setSelectedFormation] = useState(null);
     const containerRef = useRef(null);
     const [lineStyle, setLineStyle] = useState({ top: "0px", height: "0px" });
@@ -86,7 +98,7 @@ const Parcours = () => {
                             }`}
                             onClick={() => setActiveTab("parcours")}
                         >
-                            Formations
+                            Expériences Pro
                         </button>
                         <button
                             className={`px-6 py-2 rounded-full transition-all duration-300 text-sm font-semibold shadow-lg ${
@@ -96,7 +108,7 @@ const Parcours = () => {
                             }`}
                             onClick={() => setActiveTab("experiences")}
                         >
-                            Expériences Pro
+                            Formations
                         </button>
 
                         <a
@@ -150,17 +162,32 @@ const Parcours = () => {
 
                 {selectedFormation && (
                     <div
-                        className="fixed inset-0 bg-black bg-opacity-60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+                        className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
                         onClick={() => setSelectedFormation(null)}
                     >
-                        <div className="bg-gray-800 border border-gray-600 p-6 rounded-xl w-full max-lg text-white relative shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                            <button className="absolute top-3 right-3 text-gray-400 hover:text-white transition" onClick={() => setSelectedFormation(null)}>
-                                ✖
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="bg-gray-800 border border-gray-600 p-6 md:p-8 rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto text-white relative shadow-2xl custom-scrollbar"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors" onClick={() => setSelectedFormation(null)}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
-                            <span className="inline-block px-3 py-1 bg-blue-600 text-xs rounded-full mb-3">{selectedFormation.year}</span>
-                            <h2 className="text-xl font-bold mb-2">{selectedFormation.title}</h2>
-                            <p className="text-gray-300 leading-relaxed">{selectedFormation.details}</p>
-                        </div>
+
+                            <span className="inline-block px-3 py-1 bg-blue-600 text-xs font-bold rounded-full mb-4 shadow-lg shadow-blue-500/20">
+                                {selectedFormation.year}
+                            </span>
+
+                            <h2 className="text-2xl md:text-3xl font-bold mb-4 border-b border-gray-700 pb-4">
+                                {selectedFormation.title}
+                            </h2>
+
+                            <p
+                                className="text-gray-300 leading-relaxed text-sm md:text-base"
+                                dangerouslySetInnerHTML={{ __html: selectedFormation.details }}
+                            />
+                        </motion.div>
                     </div>
                 )}
             </div>

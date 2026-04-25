@@ -26,7 +26,7 @@ export default function About() {
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             size: `${Math.random() * 2 + 1}px`,
-            duration: Math.random() * 3 + 1,
+            duration: Math.random() * 8 + 4,
             delay: Math.random() * 30,
         }));
         setStars(generatedStars);
@@ -37,7 +37,7 @@ export default function About() {
             duration: Math.random() * 40 + 60,
             delay: Math.random() * 20 * -1,
             scale: Math.random() * 0.6 + 0.4,
-            opacity: Math.random() * 0.4 + 0.3,
+            opacity: Math.random() * 0.4 + 0.9,
         }));
         setClouds(generatedClouds);
 
@@ -89,7 +89,6 @@ export default function About() {
     return (
         <section id="about" className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-gradient-to-b from-sky-300 via-blue-100 to-[#f3e8ff] dark:from-[#020617] dark:via-[#0f172a] dark:to-[#2e1065] transition-colors duration-500">
 
-            {/* Etoiles - Container avec transition-none pour éviter le flash des nuages */}
             <div className="absolute inset-0 pointer-events-none z-0 opacity-0 dark:opacity-100 transition-none">
                 {stars.map((star) => (
                     <motion.div
@@ -102,7 +101,7 @@ export default function About() {
                             height: star.size,
                             backgroundColor: "white"
                         }}
-                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        animate={{ opacity: [0, 1, 0.3] }}
                         transition={{
                             duration: star.duration,
                             delay: star.delay,

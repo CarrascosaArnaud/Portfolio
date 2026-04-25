@@ -7,81 +7,106 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import jeuxVideo from "../assets/the eggscape-gameplay.png";
+import jeuxVideoVideo from "../assets/eggscape.gif";
 import musique from "../assets/guitar-piano.jpg";
 import modelisationVideo from "../assets/Donuts.mp4"
 import modelisationImage from "../assets/donuts.png"
 import montageVideo from "../assets/zenitsu-loop.mp4"
 import montageVideoImage from "../assets/zenitsu.jpg"
 
+import ClickIndicator from "./ClickIndicator";
+
 const hobbiesData = [
-    { id: 1, title: "Développement de jeux vidéo", shortDesc: "Développement de jeux indépendants avec Godot", longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise exclusivement Godot.", image: jeuxVideo, link: "https://iokko.itch.io/" },
+    { id: 1, title: "Développement de jeux vidéo", shortDesc: "Développement de jeux indépendants avec Godot", longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise exclusivement Godot.", image: jeuxVideo, video: jeuxVideoVideo ,link: "https://iokko.itch.io/" },
     { id: 2, title: "Modélisation 3D", shortDesc: "Apprentissage de Blender en autodidacte", longDesc: "J'ai commencé différents projets Blender pour apprendre à modéliser des personnages et environnement pour créer des jeux vidéos en 3D.", image: modelisationImage, video: modelisationVideo },
     { id: 3, title: "Musique", shortDesc: "Pratique et écoute", longDesc: "J'ai appris le solfège à mes 8 ans avec des cou de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.", image: musique },
     { id: 4, title: "Sports", shortDesc: "Arts martiaux, musculation, escalade...", longDesc: "Le sport est indispensable à mes yeux, ça apprend la discipline en plus d'améliorer la santé mentale et physique. J'ai commencé le sport très tôt et j'ai pu pratiquer plein d'activités différentes, en club comme en solitaire.", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500" },
     { id: 5, title: "Montage vidéo", shortDesc: "Utilisation régulière de Davinci Resolve", longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition.", image: montageVideoImage, video: montageVideo },
 ];
 
-const HobbyCard = ({ hobby, isMobile }) => {
+const HobbyCard = ({ hobby, isMobile, showIndicator, onInteract }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const videoRef = useRef(null);
 
+    const isGif = hobby.video?.toLowerCase().includes("gif");
+
     return (
         <div
-            className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300 isolate transform-gpu"
-            onClick={() => setIsExpanded(!isExpanded)}
+            className="relative w-full h-[320px] md:h-[500px] group cursor-pointer isolate transform-gpu"
+            onClick={() => {
+                setIsExpanded(!isExpanded);
+                if (onInteract) onInteract();
+            }}
         >
-            <img
-                src={hobby.image}
-                alt={hobby.title}
-                className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0 will-change-transform
-                ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'group-hover:scale-105 opacity-70'} 
-                ${!isMobile && !isExpanded ? 'blur-0' : ''}`}
-            />
-
-            {!isMobile && hobby.video && (
-                <video
-                    ref={videoRef}
-                    src={hobby.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
-                    ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
-                />
+            {showIndicator && (
+                <ClickIndicator className="absolute -top-0.5 -right-0.5 md:-top-0.5 md:-right-0.5 z-50" />
             )}
 
-            <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-300 z-20 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
-                <h3 className="text-white text-2xl md:text-3xl font-bold">{hobby.title}</h3>
-                <p className="text-gray-300 text-sm md:text-base mt-2 md:mt-3 leading-relaxed">{hobby.shortDesc}</p>
-            </div>
+            <div className={`absolute inset-0 rounded-3xl overflow-hidden bg-black border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-700 ease-out
+                ${!isExpanded ? 'group-hover:scale-[1.04] group-hover:-translate-y-5 group-hover:shadow-blue-500/10' : ''}`}>
 
-            <AnimatePresence>
-                {isExpanded && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-gray-900/95 md:bg-gray-900/90 p-6 md:p-10 flex flex-col justify-center items-center text-center z-30 md:backdrop-blur-md"
-                    >
-                        <h3 className="text-white text-2xl md:text-4xl font-bold mb-4 md:mb-6">{hobby.title}</h3>
-                        <p className="text-gray-200 text-sm md:text-lg leading-relaxed mb-6 md:mb-8">{hobby.longDesc}</p>
+                <img
+                    src={hobby.image}
+                    alt={hobby.title}
+                    className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0 will-change-transform
+                    ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'opacity-70'} 
+                    ${!isMobile && !isExpanded ? 'blur-0' : ''}`}
+                />
 
-                        {hobby.link && (
-                            <a
-                                href={hobby.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-bold transition-all"
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                Lien vers mon Itch.io
-                            </a>
-                        )}
-                    </motion.div>
+                {!isMobile && hobby.video && (
+                    isGif ? (
+                        <img
+                            src={hobby.video}
+                            alt=""
+                            className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
+                            ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
+                        />
+                    ) : (
+                        <video
+                            ref={videoRef}
+                            src={hobby.video}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="auto"
+                            className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
+                            ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
+                        />
+                    )
                 )}
-            </AnimatePresence>
+
+                <div className={`absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black via-black/80 to-transparent transition-opacity duration-300 z-20 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
+                    <h3 className="text-white text-2xl md:text-3xl font-bold">{hobby.title}</h3>
+                    <p className="text-gray-300 text-sm md:text-base mt-2 md:mt-3 leading-relaxed">{hobby.shortDesc}</p>
+                </div>
+
+                <AnimatePresence>
+                    {isExpanded && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 bg-gray-900/95 md:bg-gray-900/90 p-6 md:p-10 flex flex-col justify-center items-center text-center z-30 md:backdrop-blur-md"
+                        >
+                            <h3 className="text-white text-2xl md:text-4xl font-bold mb-4 md:mb-6">{hobby.title}</h3>
+                            <p className="text-gray-200 text-sm md:text-lg leading-relaxed mb-6 md:mb-8">{hobby.longDesc}</p>
+
+                            {hobby.link && (
+                                <a
+                                    href={hobby.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-3 rounded-full font-bold transition-all"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    Lien vers mon Itch.io
+                                </a>
+                            )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
         </div>
     );
 };
@@ -89,6 +114,7 @@ const HobbyCard = ({ hobby, isMobile }) => {
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
     const [isMobile, setIsMobile] = useState(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -104,7 +130,6 @@ const Hobbies = () => {
             bg-gradient-to-b from-[#f3e8ff] to-[#e0e7ff]
             dark:from-[#1e1b4b] dark:to-[#0f172a]"
         >
-            {/* Bulles animées accentuées uniquement sur Desktop */}
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     {[...Array(10)].map((_, i) => (
@@ -155,7 +180,12 @@ const Hobbies = () => {
                     >
                         {loopData.map((hobby, index) => (
                             <SwiperSlide key={`${hobby.id}-${index}`} className="py-6 md:py-10">
-                                <HobbyCard hobby={hobby} isMobile={isMobile} />
+                                <HobbyCard
+                                    hobby={hobby}
+                                    isMobile={isMobile}
+                                    showIndicator={!hasInteracted && hobby.id === 1}
+                                    onInteract={() => setHasInteracted(true)}
+                                />
                             </SwiperSlide>
                         ))}
                     </Swiper>

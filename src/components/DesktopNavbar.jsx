@@ -40,8 +40,10 @@ const DesktopNavbar = () => {
                             <li key={link.id}>
                                 <a
                                     href={link.url}
-                                    className={`relative whitespace-nowrap text-lg transition duration-300 hover:text-black dark:hover:text-white 
-                    ${activeSection === link.url.substring(1) ? "active-link text-black dark:text-white font-bold" : "text-gray-700 dark:text-gray-400"}`}
+                                    className={`relative inline-block whitespace-nowrap text-lg transition duration-300 hover:text-black dark:hover:text-white 
+                                    ${activeSection === link.url.substring(1)
+                                        ? "text-black dark:text-white font-bold after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-full after:h-[2px] after:bg-black dark:after:bg-white"
+                                        : "text-gray-700 dark:text-gray-400"}`}
                                 >
                                     {link.text}
                                 </a>
@@ -49,7 +51,6 @@ const DesktopNavbar = () => {
                         ))}
                     </ul>
 
-                    {/* Bouton Contact unique (CTA) sans la classe active-link pour éviter la barre */}
                     <a
                         href="#contact"
                         className={`whitespace-nowrap btn btn-ghost text-xl px-4 py-2 rounded-lg transition-all duration-300 
