@@ -115,7 +115,6 @@ const Contact = () => {
     return (
         <section id="contact" className="min-h-[100dvh] pt-[12vh] pb-[5vh] flex flex-col items-center justify-start relative overflow-hidden">
 
-            {/* Système de bulles en arrière-plan */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <AnimatePresence>
                     {bubbles.map((bubble) => (

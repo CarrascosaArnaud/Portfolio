@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import ClickIndicator from "./ClickIndicator";
 
 import jeuxVideo from "../assets/the eggscape-gameplay.png";
 import musique from "../assets/guitar-piano.jpg";
@@ -17,38 +16,26 @@ import montageVideoImage from "../assets/zenitsu.jpg"
 const hobbiesData = [
     { id: 1, title: "Développement de jeux vidéo", shortDesc: "Développement de jeux indépendants avec Godot", longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise exclusivement Godot.", image: jeuxVideo, link: "https://iokko.itch.io/" },
     { id: 2, title: "Modélisation 3D", shortDesc: "Apprentissage de Blender en autodidacte", longDesc: "J'ai commencé différents projets Blender pour apprendre à modéliser des personnages et environnement pour créer des jeux vidéos en 3D.", image: modelisationImage, video: modelisationVideo },
-    { id: 3, title: "Musique", shortDesc: "Pratique et écoute", longDesc: "J'ai appris le solfège à mes 8 ans avec des cours de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.", image: musique },
+    { id: 3, title: "Musique", shortDesc: "Pratique et écoute", longDesc: "J'ai appris le solfège à mes 8 ans avec des cou de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.", image: musique },
     { id: 4, title: "Sports", shortDesc: "Arts martiaux, musculation, escalade...", longDesc: "Le sport est indispensable à mes yeux, ça apprend la discipline en plus d'améliorer la santé mentale et physique. J'ai commencé le sport très tôt et j'ai pu pratiquer plein d'activités différentes, en club comme en solitaire.", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500" },
     { id: 5, title: "Montage vidéo", shortDesc: "Utilisation régulière de Davinci Resolve", longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition.", image: montageVideoImage, video: montageVideo },
 ];
 
-const HobbyCard = ({ hobby, isMobile, showIndicator, onInteract }) => {
+const HobbyCard = ({ hobby, isMobile }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const videoRef = useRef(null);
 
     return (
         <div
             className="relative w-full h-[320px] md:h-[500px] rounded-3xl overflow-hidden bg-black group cursor-pointer border-4 border-gray-800 dark:border-gray-700 shadow-2xl transition-all duration-300 isolate transform-gpu"
-            style={{
-                WebkitMaskImage: "-webkit-radial-gradient(white, black)",
-                WebkitBackfaceVisibility: "hidden"
-            }}
-            onClick={() => {
-                setIsExpanded(!isExpanded);
-                onInteract();
-            }}
+            onClick={() => setIsExpanded(!isExpanded)}
         >
-            {showIndicator && (
-                <ClickIndicator className="absolute top-4 right-4 z-40" />
-            )}
-
             <img
                 src={hobby.image}
                 alt={hobby.title}
                 className={`w-full h-full object-cover transition-all duration-700 ease-in-out absolute inset-0 z-0 will-change-transform
-                ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'opacity-70 md:group-hover:opacity-40'} 
-                ${!isMobile && !isExpanded ? 'blur-[2px] md:group-hover:blur-0' : ''}`}
-                style={{ WebkitBackfaceVisibility: "hidden" }}
+                ${isExpanded ? 'scale-105 opacity-30 md:scale-110 md:blur-md md:opacity-40' : 'group-hover:scale-105 opacity-70'} 
+                ${!isMobile && !isExpanded ? 'blur-0' : ''}`}
             />
 
             {!isMobile && hobby.video && (
@@ -59,6 +46,7 @@ const HobbyCard = ({ hobby, isMobile, showIndicator, onInteract }) => {
                     muted
                     loop
                     playsInline
+                    preload="auto"
                     className={`w-full h-full object-cover absolute inset-0 z-10 transition-opacity duration-500 ease-in-out
                     ${isExpanded ? 'opacity-0' : 'opacity-100'}`}
                 />
@@ -101,7 +89,6 @@ const HobbyCard = ({ hobby, isMobile, showIndicator, onInteract }) => {
 const Hobbies = () => {
     const loopData = [...hobbiesData, ...hobbiesData];
     const [isMobile, setIsMobile] = useState(false);
-    const [hasInteracted, setHasInteracted] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -110,38 +97,39 @@ const Hobbies = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    const handleInteraction = () => {
-        if (!hasInteracted) {
-            setHasInteracted(true);
-        }
-    };
-
     return (
         <section
             id="hobbies"
-            className={`min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden transition-colors duration-500
-                ${isMobile
-                ? "bg-gradient-to-b from-[#f3e8ff] to-[#e0e7ff] dark:from-[#1e1b4b] dark:to-[#0f172a]"
-                : "bg-white dark:bg-[#0f172a]"
-            }`}
+            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden transition-colors duration-500
+            bg-gradient-to-b from-[#f3e8ff] to-[#e0e7ff]
+            dark:from-[#1e1b4b] dark:to-[#0f172a]"
         >
+            {/* Bulles animées accentuées uniquement sur Desktop */}
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                    {[...Array(6)].map((_, i) => (
+                    {[...Array(10)].map((_, i) => (
                         <motion.div
                             key={i}
-                            className="absolute rounded-full bg-blue-500/10 blur-3xl"
+                            className={`absolute rounded-full blur-3xl ${
+                                i % 2 === 0 ? "bg-blue-500/20" : "bg-purple-500/20"
+                            }`}
                             style={{
-                                width: 300,
-                                height: 300,
-                                top: `${Math.random() * 80}%`,
-                                left: `${Math.random() * 80}%`,
+                                width: Math.random() * 200 + 200,
+                                height: Math.random() * 200 + 200,
+                                top: `${Math.random() * 100}%`,
+                                left: `${Math.random() * 100}%`,
                             }}
                             animate={{
-                                y: [0, -20, 0],
-                                opacity: [0.1, 0.2, 0.1]
+                                x: [0, Math.random() * 50 - 25, 0],
+                                y: [0, Math.random() * 100 - 50, 0],
+                                scale: [1, 1.2, 1],
+                                opacity: [0.15, 0.3, 0.15]
                             }}
-                            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                            transition={{
+                                duration: Math.random() * 10 + 10,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
                         />
                     ))}
                 </div>
@@ -167,12 +155,7 @@ const Hobbies = () => {
                     >
                         {loopData.map((hobby, index) => (
                             <SwiperSlide key={`${hobby.id}-${index}`} className="py-6 md:py-10">
-                                <HobbyCard
-                                    hobby={hobby}
-                                    isMobile={isMobile}
-                                    showIndicator={!hasInteracted && hobby.id === 1}
-                                    onInteract={handleInteraction}
-                                />
+                                <HobbyCard hobby={hobby} isMobile={isMobile} />
                             </SwiperSlide>
                         ))}
                     </Swiper>
