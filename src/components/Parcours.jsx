@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import CV from "../assets/CV_2026-04-24_Arnaud_Carrascosa.pdf";
+import CV from "../assets/CV Arnaud CARRASCOSA.pdf";
 import ClickIndicator from "./ClickIndicator";
 
 const parcours = [
