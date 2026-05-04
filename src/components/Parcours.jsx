@@ -4,31 +4,86 @@ import CV from "../assets/CV Arnaud CARRASCOSA.pdf";
 import ClickIndicator from "./ClickIndicator";
 
 const parcours = [
-
-    { year: "2024-2025", title: "Titre Professionnel CDA", details: "Titre professionnel de niveau 6 (équivalent bac +3/4) de <b>Concepteur Développeur d'Applications</b>, effectué en alternance chez Dawan." },
-    { year: "2023-2024", title: "POE Développeur Java", details: "Formation spécialisée dans le développement <b>Java</b>." },
-    { year: "2022-2023", title: "Bachelor en Marketing Commerce & Négociation", details: "Année effectuée en alternance dans deux entreprises différentes : <b>FeelU</b> puis <b>Lundi Matin</b>." },
-    { year: "2021-2022", title: "Ecole d'ingénieur en informatique", details: "Première année à <b>3iL Rodez</b>, en alternance à Sopra Steria." },
+    {
+        year: "2024 - 2025",
+        entity: "Dawan",
+        title: "Titre Professionnel CDA",
+        tags: ["Java", "React", "SQL", "JS", "Agile"],
+        details: "Titre RNCP niveau 6 (équivalent bac +4) de <b>Concepteur Développeur d'Applications</b>, effectué en alternance chez Dawan."
+    },
+    {
+        year: "2023 - 2024",
+        entity: "Dawan",
+        title: "POEI Développeur Java",
+        tags: ["Java", "Spring Boot", "Hibernate", "Maven"],
+        details: "Formation spécialisée dans le développement <b>Java</b>."
+    },
+    {
+        year: "2022 - 2023",
+        entity: "IPAC Bachelor Factory",
+        title: "Bachelor en Marketing Commerce & Négociation",
+        tags: ["Marketing", "Négociation", "Vente"],
+        details: "Année effectuée en alternance dans deux entreprises différentes : <b>FeelU</b> puis <b>Lundi Matin</b>."
+    },
+    {
+        year: "2021 - 2022",
+        entity: "3iL Rodez",
+        title: "Ecole d'ingénieur en informatique",
+        tags: ["Java", "SQL", "Algo"],
+        details: "Première année à <b>3iL Rodez</b>, en alternance à Sopra Steria."
+    },
     {
         year: "2019-2021",
+        entity: "Lycée Pierre Paul Riquet",
         title: "BTS SNIR",
-        details: `<b>BTS SNIR</b> : Brevet de Technicien Supérieur en Système Numériques option Informatique & Réseau.<br /><br />
-        Diplôme effectué à Saint-Orens-de-Gameville, dans la région Toulousaine. C'est un BTS assez généraliste de l'informatique.<br /><br />
-        En dehors des matières classiques comme l'anglais, les maths et la physique, j'ai adoré pouvoir toucher à plein de sous-domaines différents :<br />
-        • Programmation web <b>front & back</b><br />
-        • Réseau et infrastructure<br />
-        • IOT et électronique<br /><br />
-        J'ai été <b>Major de promotion</b> pendant les deux années, malgré le fait que lors de la deuxième année j'ai été le premier (et seul) élève de SNIR au lycée Pierre Paul Riquet à être en <b>alternance</b>.Ils avaient une autre fillière de BTS en alternance mais les SNIR n'en avaient jamais fait. J'ai donc loupé des cours que je devais ensuite rattraper puisque j'allais en entreprise quand le reste de ma classe allait en cours.`
+        tags: ["C", "C++", "IOT", "Réseaux", "Cisco"],
+        details: `<b>BTS SNIR</b> : Brevet de Technicien Supérieur en Système Numériques option Informatique & Réseau.`
     }
 ];
 
 const experiences = [
-    { year: "2024-2025", title: "Concepteur Développeur d'Applications", details: "Alternance d'un an chez <b>Dawan Montpellier</b>." },
-    { year: "2023", title: "Assistant Product Owner", details: "Alternance chez <b>Lundi Matin</b>, une ESN à la croissance importante." },
-    { year: "2022-2023", title: "Apprenti commercial", details: "Alternance chez <b>FeelU</b>, une petite startup spécialisée dans la réalité virtuelle." },
-    { year: "2022", title: "Mission d'intérim en technicien réseau", details: "Mission d'intérim effectuée chez <b>General Electric</b>, une multinationale présente dans plus de 150 pays." },
-    { year: "2021-2022", title: "Apprenti ingénieur en informatique", details: "Alternance d'un an chez <b>Sopra Steria</b>, une des ESN les plus impactantes en Europe." },
-    { year: "2020-2021", title: "Alternant technicien en informatique", details: "Alternance d'un an chez les <b>Ateliers de la Haute Garonne</b>, le leader mondial du rivet aéronautique." }
+    {
+        year: "2024 - 2025",
+        entity: "Dawan",
+        title: "Concepteur Développeur d'Applications Fullstack",
+        tags: ["React", "Node.js", "Tailwind", "Java"],
+        details: "Alternance d'un an chez <b>Dawan Montpellier</b>."
+    },
+    {
+        year: "2023",
+        entity: "Lundi Matin",
+        title: "Proxy Product Owner",
+        tags: ["Agile", "Scrum", "Backlog", "Tests"],
+        details: "Alternance chez <b>Lundi Matin</b>, une ESN à la croissance importante."
+    },
+    {
+        year: "2022 - 2023",
+        entity: "FeelU",
+        title: "Business Developper",
+        tags: ["CRM", "Cold call", "Suivi client", "Prospection"],
+        details: "Alternance chez <b>FeelU</b>, une petite startup spécialisée dans la réalité virtuelle."
+    },
+    {
+        year: "2022",
+        entity: "General Electric",
+        title: "Technicien Infrastructures Réseaux",
+        tags: ["Infrastructure", "Support IT", "JIRA"],
+        details: "Mission d'intérim effectuée chez <b>General Electric</b>."
+    },
+    {
+        year: "2021 - 2022",
+        entity: "Sopra Steria",
+        title: "Ingénieur d'études et développement .NET",
+        tags: [".NET", "C#", "SQL", "JIRA", "Scrum"],
+        details: "Alternance chez <b>Sopra Steria</b> sur un logiciel d'assurance."
+    },
+    {
+        year: "2020 - 2021",
+        entity: "Ateliers de la Haute Garonne",
+        title: "Technicien Infrastructures Réseaux",
+        tags: ["Windows Server", "Active Directory", "Support IT"],
+        details: "Alternance d'un an chez les <b>Ateliers de la Haute Garonne</b>."
+    }
 ];
 
 const Parcours = () => {
@@ -134,27 +189,55 @@ const Parcours = () => {
                 >
                     <div className="relative py-2">
                         <div
-                            className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gray-500 transition-all duration-500"
+                            className="absolute left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-400/50 dark:bg-gray-500/50 transition-all duration-500"
                             style={{ top: lineStyle.top, height: lineStyle.height }}
                         ></div>
 
                         {formationsData.map((formation, index) => (
-                            <div key={index} className={`relative flex items-center py-1 mb-4 md:mb-5 ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
-                                <div className="timeline-point absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-gray-300 rounded-full border-2 border-gray-500 z-10"></div>
-                                <div
-                                    className={`cursor-pointer relative bg-white/40 dark:bg-white/5 backdrop-blur-md text-gray-900 dark:text-white p-4 rounded-xl shadow-xl transition-all duration-300 hover:scale-105 w-[45%] border border-white/50 dark:border-white/10 hover:border-blue-400/50 group
-                                                ${index % 2 === 0 ? "mr-8 text-right" : "ml-8 text-left"}`}
-                                    onClick={() => {
-                                        setSelectedFormation(formation);
-                                        setHasInteracted(true);
-                                    }}
-                                >
-                                    {!hasInteracted && index === 0 && (
-                                        <ClickIndicator className={`absolute -top-2 ${index % 2 === 0 ? '-right-2' : '-left-2'} z-20`} />
-                                    )}
+                            <div key={index} className={`group relative flex items-start py-0.5 mb-1 ${index % 2 === 0 ? "justify-start" : "justify-end"}`}>
 
-                                    <h2 className="font-bold text-lg text-blue-600 dark:text-blue-400 group-hover:text-blue-500 transition-colors">{formation.year}</h2>
-                                    <p className="text-sm font-semibold tracking-wide">{formation.title}</p>
+                                <div className="timeline-point absolute left-1/2 transform -translate-x-1/2 w-3 h-3 bg-blue-500 rounded-full border-2 border-white dark:border-slate-900 z-10 mt-4 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+
+                                <div className={`flex flex-col w-[45%] ${index % 2 === 0 ? "mr-6 md:mr-10 items-end" : "ml-6 md:ml-10 items-start"}`}>
+                                    <div
+                                        className={`cursor-pointer relative bg-white/60 dark:bg-slate-800/40 backdrop-blur-md text-gray-900 dark:text-white p-3 md:p-4 rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02] border border-white/50 dark:border-white/10 hover:border-blue-400/50 w-full
+                                                    ${index % 2 === 0 ? "text-right" : "text-left"}`}
+                                        onClick={() => {
+                                            setSelectedFormation(formation);
+                                            setHasInteracted(true);
+                                        }}
+                                    >
+                                        {!hasInteracted && index === 0 && (
+                                            <ClickIndicator className={`absolute -top-2 ${index % 2 === 0 ? '-right-2' : '-left-2'} z-20`} />
+                                        )}
+
+                                        <div className={`flex flex-col ${index % 2 === 0 ? "items-end" : "items-start"}`}>
+                                            <h2 className={`font-bold text-sm md:text-base text-blue-600 dark:text-blue-400 group-hover:text-blue-500 transition-colors flex flex-wrap items-center gap-1 ${index % 2 === 0 ? "justify-end" : "justify-start"}`}>
+                                                <span>{formation.year}</span>
+                                                {formation.entity && (
+                                                    <>
+                                                        <span className="text-gray-400 dark:text-gray-500">•</span>
+                                                        <span className="text-gray-600 dark:text-gray-300 text-xs md:text-sm font-medium">{formation.entity}</span>
+                                                    </>
+                                                )}
+                                            </h2>
+                                        </div>
+
+                                        <p className="text-xs md:text-sm font-semibold tracking-tight mt-0.5">
+                                            {formation.title}
+                                        </p>
+                                    </div>
+
+                                    <div className={`flex flex-wrap gap-1.5 mt-1.5 px-0.5 ${index % 2 === 0 ? "justify-end" : "justify-start"}`}>
+                                        {formation.tags?.map((tag, tIdx) => (
+                                            <span
+                                                key={tIdx}
+                                                className="px-2.5 py-0.5 text-[11px] md:text-xs font-bold bg-blue-100 dark:bg-blue-900/60 text-blue-900 dark:text-blue-100 rounded-full border border-blue-300 dark:border-blue-700 shadow-sm"
+                                            >
+            {tag}
+        </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -169,23 +252,30 @@ const Parcours = () => {
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            className="bg-gray-800 border border-gray-600 p-6 md:p-8 rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto text-white relative shadow-2xl custom-scrollbar"
+                            className="bg-slate-900 border border-slate-700 p-6 md:p-8 rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto text-white relative shadow-2xl custom-scrollbar"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <button className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors" onClick={() => setSelectedFormation(null)}>
+                            <button className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors" onClick={() => setSelectedFormation(null)}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                             </button>
 
-                            <span className="inline-block px-3 py-1 bg-blue-600 text-xs font-bold rounded-full mb-4 shadow-lg shadow-blue-500/20">
-                                {selectedFormation.year}
-                            </span>
+                            <div className="flex flex-wrap items-center gap-3 mb-4">
+                                <span className="inline-block px-3 py-1 bg-blue-600 text-xs font-bold rounded-full shadow-lg shadow-blue-500/20">
+                                    {selectedFormation.year}
+                                </span>
+                                {selectedFormation.entity && (
+                                    <span className="text-slate-300 font-semibold text-sm md:text-base border-l border-slate-600 pl-3">
+                                        {selectedFormation.entity}
+                                    </span>
+                                )}
+                            </div>
 
-                            <h2 className="text-2xl md:text-3xl font-bold mb-4 border-b border-gray-700 pb-4">
+                            <h2 className="text-2xl md:text-3xl font-bold mb-4 border-b border-slate-700 pb-4">
                                 {selectedFormation.title}
                             </h2>
 
                             <p
-                                className="text-gray-300 leading-relaxed text-sm md:text-base"
+                                className="text-slate-300 leading-relaxed text-sm md:text-base"
                                 dangerouslySetInnerHTML={{ __html: selectedFormation.details }}
                             />
                         </motion.div>
