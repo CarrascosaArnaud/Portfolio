@@ -12,6 +12,11 @@ npx tailwindcss init
 npm i -D daisyui@latest  
 npm run dev
 
+## Reprise du projet sur linux : 
+
+pnpm i
+pnpm run dev
+
 # Logiciel + Extensions :
 
 VSCode :  
