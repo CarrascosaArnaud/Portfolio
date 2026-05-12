@@ -17,11 +17,11 @@ import montageVideoImage from "../assets/zenitsu.jpg"
 import ClickIndicator from "./ClickIndicator";
 
 const hobbiesData = [
-    { id: 1, title: "Développement de jeux vidéo", shortDesc: "Développement de jeux indépendants avec Godot", longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise exclusivement Godot.", image: jeuxVideo, video: jeuxVideoVideo ,link: "https://iokko.itch.io/" },
+    { id: 1, title: "Développement de jeux vidéo", shortDesc: "Développement de jeux indépendants avec Godot", longDesc: "Je monte régulièrement des équipes pour participer à des gamejams organisées sur itch.io. J'ai de l'expérience sur Unity mais depuis plusieurs années j'utilise principalement Godot, ainsi que d'autres logiciels complémentaires (FLStudio, Audacity, Photoshop...).", image: jeuxVideo, video: jeuxVideoVideo ,link: "https://iokko.itch.io/" },
     { id: 2, title: "Modélisation 3D", shortDesc: "Blender", longDesc: "J'ai travaillé en autonomie sur différents projets Blender pour apprendre à modéliser des personnages et environnement afin créer des jeux vidéos en 3D.", image: modelisationImage, video: modelisationVideo },
     { id: 3, title: "Musique", shortDesc: "Pratique et écoute", longDesc: "J'ai appris le solfège à mes 8 ans avec des cours de piano, j'ai ensuite continué mon apprentissage de divers instruments en autodidacte comme la guitare ou le violon. J'ai aussi des bases sur FLStudio, pour aggrémenter mes jeux vidéos.", image: musique },
-    { id: 4, title: "Sports", shortDesc: "Arts martiaux, musculation, escalade...", longDesc: "Le sport est indispensable à mes yeux, ça entraîne la discipline en plus d'améliorer la santé mentale et physique. J'ai commencé le sport très tôt et j'ai pu pratiquer de nombreuses d'activités différentes, en club ou en individuel.", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500" },
-    { id: 5, title: "Montage vidéo", shortDesc: "Utilisation régulière de Davinci Resolve", longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition.", image: montageVideoImage, video: montageVideo },
+    { id: 4, title: "Sports", shortDesc: "Arts martiaux, musculation, escalade...", longDesc: "Le sport est indispensable à mes yeux, ça entraîne la discipline en plus d'améliorer la santé mentale et physique. J'ai commencé le sport très tôt et j'ai pu pratiquer de nombreuses d'activités différentes, en club ou en individuel. Les sports que je préfère sont l'escalade, la musculation, les arts martiaux et sports de combats de manière générale.", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=500" },
+    { id: 5, title: "Montage vidéo", shortDesc: "Utilisation régulière de Davinci Resolve", longDesc: "Mon amour du montage vidéo est né des vidéos de vacances que faisait mon père, et j'ai appris le montage vidéo seul pour continuer cette tradition. J'ai plusieurs années d'expérience sur Sony Vegas Pro ainsi que Adobe Premiere Pro, mais j'ai surtout utilisé Davinci Resolve ces 5 dernières années.", image: montageVideoImage, video: montageVideo },
 ];
 
 const HobbyCard = ({ hobby, isMobile, showIndicator, onInteract }) => {
@@ -124,12 +124,7 @@ const Hobbies = () => {
     }, []);
 
     return (
-        <section
-            id="hobbies"
-            className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden transition-colors duration-500
-            bg-gradient-to-b from-[#f3e8ff] to-[#e0e7ff]
-            dark:from-[#1e1b4b] dark:to-[#0f172a]"
-        >
+        <section id="hobbies" className="min-h-[100dvh] pt-[10vh] pb-[5vh] flex flex-col items-center relative overflow-hidden transition-colors duration-500 bg-gradient-to-b from-blue-100 to-blue-200 dark:from-[#111827] dark:to-[#0c1324]">
             {!isMobile && (
                 <div className="absolute inset-0 z-0 pointer-events-none">
                     {[...Array(10)].map((_, i) => (

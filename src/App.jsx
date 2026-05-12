@@ -1,7 +1,8 @@
 import "./App.css";
 import { useEffect } from "react";
-import About from "./components/About";
-import Contact from "./components/Contact";
+import About from "./components/About.jsx";
+import Projets from "./components/Projets.jsx";
+import Contact from "./components/Contact.jsx";
 import Formations from "./components/./Parcours.jsx";
 import Hobbies from "./components/Hobbies";
 import Navbar from "./components/Navbar";
@@ -22,6 +23,7 @@ function App() {
         }
     }, []);
 
+    //const sections = [About, Projets, Formations, Hobbies, Contact];
     const sections = [About, Formations, Hobbies, Contact];
     return (
         <main>

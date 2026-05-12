@@ -113,8 +113,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="min-h-[100dvh] pt-[12vh] pb-[5vh] flex flex-col items-center justify-start relative overflow-hidden">
-
+        <section id="contact" className="min-h-[100dvh] pt-[12vh] pb-[5vh] flex flex-col items-center justify-start relative overflow-hidden bg-gradient-to-b from-blue-200 to-white dark:from-[#0c1324] dark:to-[#020617] transition-colors duration-500">
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <AnimatePresence>
                     {bubbles.map((bubble) => (

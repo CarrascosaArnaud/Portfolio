@@ -115,10 +115,7 @@ const Parcours = () => {
     }, [formationsData, activeTab]);
 
     return (
-        <section
-            id="formations"
-            className="h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-white dark:bg-[#0f172a] bg-gradient-to-b from-[#e0e7ff] via-[#f3e8ff] to-[#f3e8ff] dark:from-[#2e1065] dark:via-[#1e1b4b] dark:to-[#1e1b4b] transition-colors duration-500"
-        >
+        <section id="formations" className="h-[100dvh] w-full flex flex-col items-center pt-16 md:pt-24 pb-4 relative overflow-hidden bg-gradient-to-b from-blue-50 to-blue-100 dark:from-[#0f172a] dark:to-[#111827] transition-colors duration-500">
             <div className="absolute inset-0 z-0 pointer-events-none">
                 {[...Array(10)].map((_, i) => (
                     <motion.div

@@ -87,8 +87,7 @@ export default function About() {
     }, [dynamicWord, isDeleting, currentQuality, pool]);
 
     return (
-        <section id="about" className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-gradient-to-b from-sky-300 via-blue-100 to-[#f3e8ff] dark:from-[#020617] dark:via-[#0f172a] dark:to-[#2e1065] transition-colors duration-500">
-
+        <section id="about" className="min-h-[100dvh] flex flex-col justify-center items-center px-6 relative overflow-hidden bg-gradient-to-b from-sky-300 to-sky-100 dark:from-[#020617] dark:to-[#081421] transition-colors duration-500">
             <div className="absolute inset-0 pointer-events-none z-0 opacity-0 dark:opacity-100 transition-none">
                 {stars.map((star) => (
                     <motion.div
